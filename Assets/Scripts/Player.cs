@@ -1,20 +1,39 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
+    [Header("Velocidad Mov")]
     [SerializeField] private float _speed = 5f;
-    [SerializeField] private float _turnSmoothTime = 0.1f;
-    [SerializeField] private Transform _camera;
+    private Vector2 _input;
+    private Vector3 _direction;
+
+    [Header("Rotacion")]
+    [SerializeField] private float _rotationSpeed = 500f;
+
+    [Header("Gravedad")]
+    [SerializeField] private float _gravityMultiplier = 3.0f;
+    private float _gravity = -9.81f;
+    private float _velocity;
+
+    [Header("Salto")]
+    [SerializeField] private float _jumpPower;
 
     private CharacterController _controller;
-    private float _turnSmoothVelocity;
+    private Camera _mainCamera;
+
+    private void Awake()
+    {
+        _controller = GetComponent<CharacterController>();
+        _mainCamera = Camera.main;
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        _controller = GetComponent<CharacterController>();
+        
         //Hide curser
         Cursor.visible = false;
         Cursor.lockState = CursorLockMode.Locked;
@@ -31,30 +50,64 @@ public class Player : MonoBehaviour
             Cursor.lockState = CursorLockMode.None;
         }
 
-        CalculateMovement();
+        ApplyRotacion();
+        ApplyGravity();
+
+        Debug.Log(_controller.isGrounded);
+        ApplyMovement();
     }
 
-    private void CalculateMovement()
+    private void ApplyMovement()
     {
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
+        _controller.Move(_direction * _speed * Time.deltaTime);
+    }
 
-        Vector3 direction = new Vector3(horizontalInput, 0f, verticalInput).normalized;
-
-        if (direction.magnitude >= 0.1f)
+    private void ApplyGravity()
+    {
+        if (IsGrounded() && _velocity < 0.0f)
         {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + _camera.eulerAngles.y;
+            _velocity = -1.0f;
+        }
+        else
+        {
+            _velocity += _gravity * _gravityMultiplier * Time.deltaTime;
+        }
+        
+        _direction.y = _velocity;
+    }
 
-            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref _turnSmoothVelocity, _turnSmoothTime);
-
-            Vector3 movDir = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-
-            transform.rotation = Quaternion.Euler(0f, angle, 0f);
-
-            _controller.Move(movDir.normalized * _speed * Time.deltaTime);
+    private void ApplyRotacion()
+    {
+        if (_input.sqrMagnitude == 0)
+        {
+            return;
         }
 
-        
+        _direction = Quaternion.Euler(0.0f, _mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(_input.x, 0.0f, _input.y);
+        var targetRotation = Quaternion.LookRotation(_direction, Vector3.up);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
     }
 
+    public void MovPlayer(InputAction.CallbackContext context)
+    {
+        _input = context.ReadValue<Vector2>().normalized;
+        _direction = new Vector3(_input.x, 0.0f, _input.y);
+    }
+
+    public void JumpPlayer(InputAction.CallbackContext context)
+    {
+        if (!context.started)
+        {
+            return;
+        }
+
+        if (!IsGrounded())
+        {
+            return;
+        }
+
+        _velocity += _jumpPower;
+    }
+
+    private bool IsGrounded() => _controller.isGrounded;
 }
