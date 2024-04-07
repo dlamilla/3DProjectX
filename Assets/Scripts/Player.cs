@@ -52,8 +52,6 @@ public class Player : MonoBehaviour
 
         ApplyRotacion();
         ApplyGravity();
-
-        Debug.Log(_controller.isGrounded);
         ApplyMovement();
     }
 
