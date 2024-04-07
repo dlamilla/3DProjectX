@@ -34,21 +34,14 @@ public class Player : MonoBehaviour
     void Start()
     {
         
-        //Hide curser
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Activate mouse
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            Cursor.visible = true;
-            Cursor.lockState = CursorLockMode.None;
-        }
+        
 
         ApplyRotacion();
         ApplyGravity();
