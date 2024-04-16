@@ -1,0 +1,381 @@
+fileFormatVersion: 2
+guid: a633e052cd5e5fb498af3431ed16848b
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects: {}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: "Invalid Avatar Rig Configuration. Missing or invalid transform:\n\tRequired
+      human bone 'Hips' not found\n"
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 1
+    animationCompression: 3
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 0
+  humanDescription:
+    serializedVersion: 3
+    human:
+    - boneName: pierna.l
+      humanName: LeftUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: pierna.r
+      humanName: RightUpperLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: pierninferior.l
+      humanName: LeftLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: pierninferior.r
+      humanName: RightLowerLeg
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cuerpo
+      humanName: Chest
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: punta.l
+      humanName: LeftToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: clavicula.l
+      humanName: LeftShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: antebrazo.l
+      humanName: LeftUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: brazo.l
+      humanName: LeftLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mano.l
+      humanName: LeftHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: clavicula.r
+      humanName: RightShoulder
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: brazo.r
+      humanName: RightLowerArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: mano.r
+      humanName: RightHand
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: antebrazo.r
+      humanName: RightUpperArm
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: punta.r
+      humanName: RightToes
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cabeza
+      humanName: Head
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    - boneName: cuello
+      humanName: Neck
+      limit:
+        min: {x: 0, y: 0, z: 0}
+        max: {x: 0, y: 0, z: 0}
+        value: {x: 0, y: 0, z: 0}
+        length: 0
+        modified: 0
+    skeleton:
+    - name: "jugadorara\xF1a(Clone)"
+      parentName: 
+      position: {x: 0, y: 0, z: 0}
+      rotation: {x: 0, y: 0, z: 0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Armature
+      parentName: "jugadorara\xF1a(Clone)"
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 100, y: 100, z: 100}
+    - name: cuerpo
+      parentName: Armature
+      position: {x: -0, y: 0, z: 0.010829777}
+      rotation: {x: 0.7071068, y: 0, z: -0, w: 0.7071067}
+      scale: {x: 1, y: 1, z: 1}
+    - name: clavicula.l
+      parentName: cuerpo
+      position: {x: 0.00011004708, y: 0.010472455, z: 0.0014953094}
+      rotation: {x: 0.17628235, y: 0.6756614, z: 0.69200623, w: 0.18312185}
+      scale: {x: 1, y: 1, z: 1}
+    - name: antebrazo.l
+      parentName: clavicula.l
+      position: {x: -2.4796462e-10, y: 0.0038339805, z: -0.0000000031362286}
+      rotation: {x: 0.031345505, y: 0.7157399, z: 0.009153714, w: 0.6976031}
+      scale: {x: 0.9999999, y: 1, z: 0.9999999}
+    - name: brazo.l
+      parentName: antebrazo.l
+      position: {x: -5.39585e-10, y: 0.0042536184, z: 6.1234456e-10}
+      rotation: {x: 0.0033976035, y: 0.20421839, z: 0.011693927, w: 0.97884965}
+      scale: {x: 0.99999994, y: 1, z: 1}
+    - name: mano.l
+      parentName: brazo.l
+      position: {x: 2.2177118e-10, y: 0.0040014405, z: 5.122274e-11}
+      rotation: {x: -0.00054987054, y: -0.060741737, z: -0.003963157, w: 0.9981455}
+      scale: {x: 0.99999994, y: 1, z: 1}
+    - name: mano.l_end
+      parentName: mano.l
+      position: {x: -0, y: 0.003003368, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: clavicula.r
+      parentName: cuerpo
+      position: {x: -0, y: 0.010472455, z: -0.0014042058}
+      rotation: {x: -0.7141065, y: 0, z: 0, w: 0.70003706}
+      scale: {x: 1, y: 1, z: 1}
+    - name: antebrazo.r
+      parentName: clavicula.r
+      position: {x: -0, y: 0.0038339808, z: -1.862645e-10}
+      rotation: {x: 0.032654725, y: -5.0167095e-20, z: 5.0423143e-18, w: 0.9994667}
+      scale: {x: 1, y: 1, z: 1}
+    - name: brazo.r
+      parentName: antebrazo.r
+      position: {x: 3.1019272e-27, y: 0.0042536194, z: -0.000000001117587}
+      rotation: {x: 0.01217752, y: 2.2522442e-25, z: 2.7039637e-18, w: 0.99992585}
+      scale: {x: 1, y: 0.99999994, z: 0.9999999}
+    - name: mano.r
+      parentName: brazo.r
+      position: {x: -7.2378304e-27, y: 0.0040014386, z: -0.0000000013411044}
+      rotation: {x: -0.0040011457, y: 1.0275426e-24, z: -8.884055e-19, w: 0.999992}
+      scale: {x: 1, y: 1, z: 1}
+    - name: mano.r_end
+      parentName: mano.r
+      position: {x: -0, y: 0.0030033696, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: cuello
+      parentName: cuerpo
+      position: {x: -0, y: 0.010368061, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: cabeza
+      parentName: cuello
+      position: {x: -0, y: 0.0026782774, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: cabeza_end
+      parentName: cabeza
+      position: {x: -0, y: 0.011906018, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: pierna.l
+      parentName: cuerpo
+      position: {x: -0.00016649492, y: 0.0008526218, z: 0.0024088845}
+      rotation: {x: 0.99923956, y: -0.030645566, z: 0.0012164534, w: 0.024077633}
+      scale: {x: 1.0000056, y: 1, z: 1.0000035}
+    - name: pierninferior.l
+      parentName: pierna.l
+      position: {x: -2.2118911e-11, y: 0.0055830334, z: -2.5622285e-10}
+      rotation: {x: -0.017541569, y: -0.00051620766, z: -0.074093066, w: 0.99709696}
+      scale: {x: 0.99999994, y: 1, z: 1.0000001}
+    - name: pata.l
+      parentName: pierninferior.l
+      position: {x: 8.731149e-13, y: 0.004544807, z: 9.476935e-12}
+      rotation: {x: -0.29802313, y: 0.056205507, z: 0.5419531, w: 0.7837793}
+      scale: {x: 1.0000001, y: 1.0000001, z: 1}
+    - name: punta.l
+      parentName: pata.l
+      position: {x: -5.5879353e-11, y: 0.0024641757, z: -1.862645e-10}
+      rotation: {x: -0.10802274, y: 0.62232846, z: 0.04107219, w: 0.7741779}
+      scale: {x: 1, y: 0.99999976, z: 0.9999999}
+    - name: punta.l_end
+      parentName: punta.l
+      position: {x: -0, y: 0.003047801, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: pierna.r
+      parentName: cuerpo
+      position: {x: -0.0002625947, y: 0.0008526218, z: -0.0023218878}
+      rotation: {x: 0.99924, y: -0.03028706, z: -0.0007361745, w: -0.024526948}
+      scale: {x: 1.0000056, y: 1, z: 1.0000036}
+    - name: pierninferior.r
+      parentName: pierna.r
+      position: {x: 1.1816155e-10, y: 0.0055830334, z: 1.9356719e-10}
+      rotation: {x: 0.0165321, y: 0.0011813006, z: -0.07432486, w: 0.99709636}
+      scale: {x: 1, y: 0.9999999, z: 0.99999994}
+    - name: pata.r
+      parentName: pierninferior.r
+      position: {x: -7.683411e-11, y: 0.0045448085, z: 3.994137e-10}
+      rotation: {x: 0.16080244, y: 0.1415347, z: 0.5972216, w: 0.7729404}
+      scale: {x: 1, y: 1.0000001, z: 0.9999999}
+    - name: punta.r
+      parentName: pata.r
+      position: {x: -0, y: 0.0024641752, z: 1.862645e-10}
+      rotation: {x: -0.0021109837, y: 0.05578127, z: 0.1155481, w: 0.9917321}
+      scale: {x: 0.99999994, y: 1, z: 0.9999999}
+    - name: punta.r_end
+      parentName: punta.r
+      position: {x: -0, y: 0.0030478016, z: 0}
+      rotation: {x: 0, y: -0, z: -0, w: 1}
+      scale: {x: 1, y: 1, z: 1}
+    - name: Cube
+      parentName: "jugadorara\xF1a(Clone)"
+      position: {x: -0, y: 0, z: 0}
+      rotation: {x: -0.00000003774895, y: 0, z: -0, w: 1}
+      scale: {x: 100, y: 100, z: 100}
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 1
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 3
+  humanoidOversampling: 1
+  avatarSetup: 1
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
