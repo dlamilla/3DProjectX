@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -14,19 +13,26 @@ public class Player : MonoBehaviour
     [SerializeField] private float _rotationSpeed = 500f;
 
     [Header("Gravedad")]
-    [SerializeField] private float _gravityMultiplier = 3.0f;
-    private float _gravity = -9.81f;
-    private float _velocity;
+    //[SerializeField] private float _gravityMultiplier = 3.0f;
+    //private float _gravity = -9.81f;
+    //private float _velocity;
 
     [Header("Salto")]
     [SerializeField] private float _jumpPower;
 
-    private CharacterController _controller;
+    [Header("Animaciones")]
+    [SerializeField] private Animator _anim;
+
+    //private CharacterController _controller;
+    private Rigidbody _rb;
     private Camera _mainCamera;
+
+
 
     private void Awake()
     {
-        _controller = GetComponent<CharacterController>();
+        //_controller = GetComponent<CharacterController>();
+        _rb = GetComponent<Rigidbody>();
         _mainCamera = Camera.main;
     }
 
@@ -41,30 +47,38 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        _input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        float anim = _input.magnitude;
+        _anim.SetFloat("Speed", Mathf.Abs(anim));
+        _direction = new Vector3(_input.x, 0.0f, _input.y);
 
         ApplyRotacion();
         ApplyGravity();
         ApplyMovement();
+
+
     }
 
     private void ApplyMovement()
     {
-        _controller.Move(_direction * _speed * Time.deltaTime);
+        
+
+        _rb.MovePosition(transform.position + _direction * _speed * Time.deltaTime);
+        //_controller.Move(_direction * _speed * Time.deltaTime);
     }
 
     private void ApplyGravity()
     {
-        if (IsGrounded() && _velocity < 0.0f)
-        {
-            _velocity = -1.0f;
-        }
-        else
-        {
-            _velocity += _gravity * _gravityMultiplier * Time.deltaTime;
-        }
+        //if (IsGrounded() && _velocity < 0.0f)
+        //{
+        //    _velocity = -1.0f;
+        //}
+        //else
+        //{
+        //    _velocity += _gravity * _gravityMultiplier * Time.deltaTime;
+        //}
         
-        _direction.y = _velocity;
+        //_direction.y = _velocity;
     }
 
     private void ApplyRotacion()
@@ -79,26 +93,5 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
     }
 
-    public void MovPlayer(InputAction.CallbackContext context)
-    {
-        _input = context.ReadValue<Vector2>().normalized;
-        _direction = new Vector3(_input.x, 0.0f, _input.y);
-    }
-
-    public void JumpPlayer(InputAction.CallbackContext context)
-    {
-        if (!context.started)
-        {
-            return;
-        }
-
-        if (!IsGrounded())
-        {
-            return;
-        }
-
-        _velocity += _jumpPower;
-    }
-
-    private bool IsGrounded() => _controller.isGrounded;
+    
 }
