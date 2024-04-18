@@ -23,6 +23,7 @@ public class ControlRuleta : MonoBehaviour
     [SerializeField] private GameObject _item6x;
     [SerializeField] private GameObject _item7x;
     [SerializeField] private GameObject _item8x;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -34,43 +35,43 @@ public class ControlRuleta : MonoBehaviour
     {
         if (_item1.activeSelf)
         {
-            _item1x.GetComponent<Collider>().enabled = false;
+            Destroy(_item1x);
         }
 
-        if (_item2.activeInHierarchy)
+        if (_item2.activeSelf)
         {
-            Debug.Log("Llego aaca");
-            _item2x.GetComponent<ActiveShader>().enabled = false;
+            Destroy(_item2x);
+
         }
 
         if (_item3.activeSelf)
         {
-            _item4x.SetActive(false);
+            Destroy(_item3x);
         }
 
         if (_item4.activeSelf)
         {
-            _item4x.SetActive(false);
+            Destroy(_item4x);
         }
 
         if (_item5.activeSelf)
         {
-            _item5x.SetActive(false);
+            Destroy(_item5x);
         }
 
         if (_item6.activeSelf)
         {
-            _item6x.SetActive(false);
+            Destroy(_item6x);
         }
 
         if (_item7.activeSelf)
         {
-            _item7x.SetActive(false);
+            Destroy(_item7x);
         }
 
         if (_item8.activeSelf)
         {
-            _item8x.SetActive(false);
+            Destroy(_item8x);
         }
     }
 }
