@@ -18,6 +18,9 @@ public class Item : MonoBehaviour
     [Header("Colores")]
     [SerializeField] private Color starColor;
     [SerializeField] private Color endColor;
+
+    [Header("Sonido")]
+    [SerializeField] private AudioClip _sound;
     
     // Start is called before the first frame update
     void Start()
@@ -37,6 +40,7 @@ public class Item : MonoBehaviour
     {
         float elapsedTime = 0;
         Color lerpedColor;
+        AudioController.Instance.PlaySound(_sound);
         while (elapsedTime < _dissolveDuration)
         {
             elapsedTime += Time.deltaTime;
@@ -48,6 +52,7 @@ public class Item : MonoBehaviour
             yield return null;
         }
         _collection.ItemSum(_cont);
+        
         this.gameObject.SetActive(false);
     }
 }

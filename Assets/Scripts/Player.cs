@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     [Header("Animaciones")]
     [SerializeField] private Animator _anim;
 
+    private AudioSource _footSteps;
     //private CharacterController _controller;
     private Rigidbody _rb;
     private Camera _mainCamera;
@@ -31,6 +32,7 @@ public class Player : MonoBehaviour
 
     private void Awake()
     {
+        _footSteps = GetComponent<AudioSource>();
         //_controller = GetComponent<CharacterController>();
         _rb = GetComponent<Rigidbody>();
         _mainCamera = Camera.main;
@@ -49,6 +51,14 @@ public class Player : MonoBehaviour
     {
         _input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
         float anim = _input.magnitude;
+        if (anim > 0f)
+        {
+            _footSteps.enabled = true;
+        }
+        else
+        {
+            _footSteps.enabled = false;
+        }
         _anim.SetFloat("Speed", Mathf.Abs(anim));
         _direction = new Vector3(_input.x, 0.0f, _input.y);
 
