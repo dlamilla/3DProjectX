@@ -31,7 +31,6 @@ public class Item : MonoBehaviour
 
     public void ItemCollect()
     {
-        Debug.Log("LLege");
         StartCoroutine(Dissolver());
     }
   

@@ -12,6 +12,7 @@ public class ActiveShader : MonoBehaviour
     [SerializeField] private GameObject _player;
     [SerializeField] private Item _itemX;
     [SerializeField] private GameObject _activeRolutte;
+    [SerializeField] private GameObject _indication1;
 
     [SerializeField] private bool _active;
 
@@ -35,6 +36,7 @@ public class ActiveShader : MonoBehaviour
             _indication.SetActive(true);
             _objScena.SetActive(false);
             _player.SetActive(false);
+            _indication1.SetActive(false);
         }
 
         if (Input.GetKeyDown(KeyCode.E) && _active)
@@ -52,7 +54,7 @@ public class ActiveShader : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             _active = true;
-            Debug.Log("Entro");
+            _indication1.SetActive(true);
         }
     }
 
@@ -61,6 +63,7 @@ public class ActiveShader : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             _active = false;
+            _indication1.SetActive(false);
         }
     }
 
@@ -74,6 +77,7 @@ public class ActiveShader : MonoBehaviour
         _indication.SetActive(false);
         _activeRolutte.SetActive(true);
         _player.SetActive(true);
+        _indication1.SetActive(false);
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = true;

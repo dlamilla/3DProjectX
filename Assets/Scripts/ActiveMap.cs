@@ -11,6 +11,7 @@ public class ActiveMap : MonoBehaviour
     [SerializeField] private GameObject _camera2; //10
     [SerializeField] private GameObject _objScena;
     [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _indication1;
 
     [SerializeField] private bool _active;
 
@@ -34,6 +35,7 @@ public class ActiveMap : MonoBehaviour
             _indication.SetActive(true);
             _objScena.SetActive(false);
             _player.SetActive(false);
+            _indication1.SetActive(false);
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && _active)
@@ -55,7 +57,7 @@ public class ActiveMap : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             _active = true;
-            Debug.Log("Entro");
+            _indication1.SetActive(true);
         }
     }
 
@@ -64,6 +66,7 @@ public class ActiveMap : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             _active = false;
+            _indication1.SetActive(false);
         }
     }
 }

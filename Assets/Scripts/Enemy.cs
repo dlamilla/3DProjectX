@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Threading;
@@ -6,22 +7,34 @@ using UnityEngine.AI;
 
 public class Enemy : MonoBehaviour
 {
-    public Transform objectivo;
-    public Collider[] objetos_detectados;
-    public LayerMask mascaraDeBusqueda;
+    [SerializeField] private Transform _player;
+    [SerializeField] private float _radius;
+    [SerializeField] private LayerMask _layerMask;
+    [SerializeField] private Transform[] _waypoints;
+
+    [SerializeField] private int _index;
+    [SerializeField] private Collider[] _collidersObj;
+    private NavMeshAgent _nav;
+    private Vector3 _position;
+
+    private void Awake()
+    {
+        _nav = GetComponent<NavMeshAgent>();
+    }
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        IterateWaypointIndex();
+        UpdateDestination();
     }
 
     // Update is called once per frame
     void Update()
     {
-        
 
-        objetos_detectados = Physics.OverlapSphere(transform.position, 10f,mascaraDeBusqueda);
+
+        _collidersObj = Physics.OverlapSphere(transform.position, _radius, _layerMask);
 
         //foreach (Collider item in objetos_detectados)
         //{
@@ -31,19 +44,41 @@ public class Enemy : MonoBehaviour
         //    }
         //}
 
-        if (objetos_detectados.Length > 0)
+        if (_collidersObj.Length > 0)
         {
-            GetComponent<NavMeshAgent>().SetDestination(objectivo.position);
+            _nav.SetDestination(_player.position);
         }
         else
         {
-            GetComponent<NavMeshAgent>().SetDestination(transform.position);
+            if (Vector3.Distance(transform.position,_position) < 1f)
+            {
+                IterateWaypointIndex();
+                UpdateDestination();
+
+            }
+            
+        }
+    }
+
+    private void UpdateDestination()
+    {
+        _position = _waypoints[_index].position;
+        _nav.SetDestination(_position);
+    }
+
+    private void IterateWaypointIndex()
+    {
+        _index++;
+        Debug.Log(_index);
+        if (_index >= _waypoints.Length)
+        {
+            _index = 0;
         }
     }
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
-        Gizmos.DrawWireSphere(transform.position, 10);
+        Gizmos.DrawWireSphere(transform.position, _radius);
     }
 }
