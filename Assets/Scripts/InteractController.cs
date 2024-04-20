@@ -2,15 +2,18 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class InteractController : MonoBehaviour
 {
-    [SerializeField] private GameObject _indication;
+    [SerializeField] private GameObject _indication1;
+    [SerializeField] private GameObject _indication2;
     [SerializeField] private Collection _collet;
     [SerializeField] private GameObject _textIndicacion;
     [SerializeField] private TextMeshProUGUI _textTMP;
 
     private bool _active;
+    private bool _active1;
     // Start is called before the first frame update
     void Start()
     {
@@ -45,25 +48,38 @@ public class InteractController : MonoBehaviour
                     StartCoroutine(Indicaciones());
                 }
 
-                if (_collet._itemsCatch == 8)
-                {
-                    _textTMP.text = "Return to the initial camp!!";
-                    StartCoroutine(Indicaciones());
-                }
-
                 
+
+
             }
         }
-        
-        
+
+        if (Input.GetKeyDown(KeyCode.G) && _active1 == true)
+        {
+            SceneManager.LoadScene(2);
+
+        }
+
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            _indication.SetActive(true);
-            _active = true;
+            if (_collet._itemsCatch != 8)
+            {
+                _indication1.SetActive(true);
+                _indication2.SetActive(false);
+                _active = true;
+            }
+            else
+            {
+                _indication1.SetActive(false);
+                _indication2.SetActive(true);
+                _active1 = true;
+            }
+            
+            
         }
     }
 
@@ -71,7 +87,8 @@ public class InteractController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            _indication.SetActive(false);
+            _indication1.SetActive(false);
+            _indication2.SetActive(false);
             _active = false;
         }
     }

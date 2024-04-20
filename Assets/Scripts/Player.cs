@@ -23,12 +23,27 @@ public class Player : MonoBehaviour
     [Header("Animaciones")]
     [SerializeField] private Animator _anim;
 
+    [Header("Correr")]
+    [SerializeField] private float _timeToStopRunning = 2f;
+    [SerializeField] private float _nextTimeToUse = 5f;
+
+    [Header("Materiales")]
+    [SerializeField] private Texture m_MainTexture1;
+    [SerializeField] private Texture m_MainTexture2;
+    [SerializeField] private Texture m_MainTexture3;
+    [SerializeField] private Renderer m_Renderer;
+
+    [SerializeField] private Transform _starPosition;
+
     private AudioSource _footSteps;
     //private CharacterController _controller;
     private Rigidbody _rb;
     private Camera _mainCamera;
+    private float _timeRunning;
+    private float _speedGlobal;
+    private float anim;
 
-
+    private bool _inicio;
 
     private void Awake()
     {
@@ -36,13 +51,14 @@ public class Player : MonoBehaviour
         //_controller = GetComponent<CharacterController>();
         _rb = GetComponent<Rigidbody>();
         _mainCamera = Camera.main;
+        _inicio = true;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
-        
+
+        _speedGlobal = _speed;
 
     }
 
@@ -50,7 +66,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         _input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        float anim = _input.magnitude;
+        anim = _input.magnitude;
         if (anim > 0f)
         {
             _footSteps.enabled = true;
@@ -62,6 +78,11 @@ public class Player : MonoBehaviour
         _anim.SetFloat("Speed", Mathf.Abs(anim));
         _direction = new Vector3(_input.x, 0.0f, _input.y);
 
+
+
+
+        //ApplyRunning();
+
         ApplyRotacion();
         ApplyGravity();
         ApplyMovement();
@@ -69,7 +90,46 @@ public class Player : MonoBehaviour
 
     }
 
-    private void ApplyMovement()
+    private void ApplyRunning()
+    {
+        if (Input.GetKey(KeyCode.LeftShift) )
+        {
+            if (_inicio && anim != 0f)
+            {
+                _anim.SetBool("isRunning", true);
+                _speed = 35f;
+                if (_timeRunning < _timeToStopRunning)
+                {
+                    _timeRunning += Time.deltaTime;
+
+                }
+                else
+                {
+                    _inicio = false;
+                    _timeRunning = 0f;
+                    _speed = _speedGlobal;
+                    _anim.SetBool("isRunning", false);
+                }
+            }
+            else
+            {
+                _inicio = false;
+                _timeRunning = 0f;
+                _speed = _speedGlobal;
+                _anim.SetBool("isRunning", false);
+            }
+
+        }
+        
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            StartCoroutine(LeftShiftRun());
+        }
+    }
+
+
+    private void ApplyMovement()  //28 speed
     {
         
 
@@ -103,5 +163,32 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
     }
 
-    
+    private IEnumerator LeftShiftRun()
+    {
+        yield return new WaitForSeconds(_nextTimeToUse);
+        _inicio = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Enemigo cerca");
+            m_Renderer.material.SetTexture("_MainTex", m_MainTexture2);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Adios");
+            m_Renderer.material.SetTexture("_MainTex", m_MainTexture1);
+        }
+    }
+
+    public void MoveToStart()
+    {
+        transform.position = _starPosition.position;
+    }
 }

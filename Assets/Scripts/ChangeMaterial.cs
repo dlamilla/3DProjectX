@@ -31,4 +31,6 @@ public class ChangeMaterial : MonoBehaviour
             m_Renderer.material.SetTexture("_MainTex", m_MainTexture3);
         }
     }
+
+    
 }

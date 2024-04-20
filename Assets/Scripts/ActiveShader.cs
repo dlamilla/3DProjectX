@@ -37,6 +37,7 @@ public class ActiveShader : MonoBehaviour
             _objScena.SetActive(false);
             _player.SetActive(false);
             _indication1.SetActive(false);
+            this.gameObject.GetComponent<Collider>().enabled = false;
         }
 
         if (Input.GetKeyDown(KeyCode.E) && _active)
@@ -71,13 +72,14 @@ public class ActiveShader : MonoBehaviour
     {
         _itemX.ItemCollect();
         yield return new WaitForSeconds(2f);
+        _indication1.SetActive(false);
         _camera1.SetActive(true);
         _camera2.SetActive(false);
         _item.SetActive(false);
         _indication.SetActive(false);
         _activeRolutte.SetActive(true);
         _player.SetActive(true);
-        _indication1.SetActive(false);
+        
 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = true;

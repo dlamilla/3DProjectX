@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -8,7 +9,13 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject btn2;
     [SerializeField] private GameObject btn3;
     [SerializeField] private GameObject _player;
+
+    [SerializeField] private GameObject text;
+    [SerializeField] private TextMeshProUGUI _text;
+    [SerializeField] private Collection _collect;
+
     public int cont = 0;
+    private bool _active = true;
     // Start is called before the first frame update
     void Start()
     {
@@ -50,6 +57,16 @@ public class GameManager : MonoBehaviour
 
                 }
             }
+
+            if (_collect._itemsCatch == 8)
+            {
+                if (_active)
+                {
+                    StartCoroutine(Final());
+                }
+                
+
+            }
         }
         
     }
@@ -59,5 +76,14 @@ public class GameManager : MonoBehaviour
         btn1.SetActive(!btn1.activeSelf);
         btn2.SetActive(!btn2.activeSelf);
         btn3.SetActive(!btn3.activeSelf);
+    }
+
+    private IEnumerator Final()
+    {
+        _text.text = "Return to the initial camp!!";
+        text.SetActive(true);
+        yield return new WaitForSeconds(2f);
+        text.SetActive(false);
+        _active = false;
     }
 }
