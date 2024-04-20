@@ -10,6 +10,8 @@ public class ChangePostProcess : MonoBehaviour
     private float _dissolveStrength1;
     private float _dissolveStrength2;
     private Vignette _vignette;
+    [SerializeField] private Player _player;
+    [SerializeField] private float _activar;
 
     // Start is called before the first frame update
     void Start()
@@ -20,15 +22,15 @@ public class ChangePostProcess : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            StartCoroutine(VignettePPV());
-        }
+        //if (Input.GetKeyDown(KeyCode.J))
+        //{
+        //    StartCoroutine(VignettePPV());
+        //}
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            StartCoroutine(VignetteDefault());
-        }
+        //if (Input.GetKeyDown(KeyCode.K))
+        //{
+        //    StartCoroutine(VignetteDefault());
+        //}
         
 
                 
@@ -57,6 +59,15 @@ public class ChangePostProcess : MonoBehaviour
         if (other.gameObject.tag == "Enemy")
         {
             
+        }
+    }
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            StartCoroutine(ControlMaximo());
+            GameObject obj = collision.gameObject;
+            StartCoroutine(Enemigo(obj));
         }
     }
 
@@ -92,6 +103,23 @@ public class ChangePostProcess : MonoBehaviour
             yield return null;
         }
 
+    }
+
+    private IEnumerator ControlMaximo()
+    {
+        StartCoroutine(VignettePPV());
+        _player.GetComponent<Player>().enabled = false;
+        yield return new WaitForSeconds(5f);
+        _player.GetComponent<Player>().enabled = true;
+        _player.GetComponent<Player>().DefaultRenderer();
+        StartCoroutine(VignetteDefault());
+    }
+
+    private IEnumerator Enemigo(GameObject obj)
+    {
+        obj.SetActive(false);
+        yield return new WaitForSeconds(_activar);
+        obj.SetActive(true);
     }
 
 }

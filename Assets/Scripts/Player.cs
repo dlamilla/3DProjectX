@@ -187,8 +187,15 @@ public class Player : MonoBehaviour
         }
     }
 
+
     public void MoveToStart()
     {
         transform.position = _starPosition.position;
     }
+
+    public void DefaultRenderer()
+    {
+        m_Renderer.material.SetTexture("_MainTex", m_MainTexture1);
+    }
+
 }
