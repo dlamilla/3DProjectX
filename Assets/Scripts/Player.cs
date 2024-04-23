@@ -78,7 +78,7 @@ public class Player : MonoBehaviour
             _footSteps.enabled = false;
         }
         _anim.SetFloat("Speed", Mathf.Abs(anim));
-        _direction = new Vector3(_input.x, 0.0f, _input.y);
+        _direction = new Vector3(_input.x, 0.0f, _input.y).normalized;
 
 
 
@@ -160,7 +160,8 @@ public class Player : MonoBehaviour
         }
         else
         {
-            
+            _speed = _speedGlobal;
+            _anim.SetBool("isRunning", false);
         }
         
 
@@ -173,6 +174,7 @@ public class Player : MonoBehaviour
             }
             else
             {
+                _speed = _speedGlobal;
                 _anim.SetBool("isRunning", false);
             }
             
@@ -189,10 +191,10 @@ public class Player : MonoBehaviour
 
     private void ApplyMovement()  //28 speed
     {
-        //_velocity = _direction * _speed;
-        //_velocity.y = _rb.velocity.y;
-        //_rb.velocity = _velocity;
-        _rb.MovePosition(transform.position + _direction * _speed * Time.deltaTime);
+        _velocity = _direction * _speed;
+        _velocity.y = _rb.velocity.y;
+        _rb.velocity = _velocity;
+        //_rb.MovePosition(transform.position + _direction * _speed * Time.deltaTime);
         //_controller.Move(_direction * _speed * Time.deltaTime);
     }
 
@@ -224,6 +226,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator LeftShiftRun()
     {
+        _speed = _speedGlobal;
         _anim.SetBool("isRunning", false);
         yield return new WaitForSeconds(_nextTimeToUse);
         cont = 0;
