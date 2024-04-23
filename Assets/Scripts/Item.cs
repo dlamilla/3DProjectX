@@ -52,6 +52,6 @@ public class Item : MonoBehaviour
         }
         _collection.ItemSum(_cont);
         
-        this.gameObject.SetActive(false);
+        //this.gameObject.SetActive(false);
     }
 }

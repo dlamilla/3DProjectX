@@ -42,8 +42,10 @@ public class Player : MonoBehaviour
     private float _timeRunning;
     private float _speedGlobal;
     private float anim;
+    private Vector3 _velocity;
 
-    private bool _inicio;
+    [SerializeField] private bool _inicio;
+    [SerializeField] private int cont = 0;
 
     private void Awake()
     {
@@ -65,7 +67,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        _input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         anim = _input.magnitude;
         if (anim > 0f)
         {
@@ -81,7 +83,7 @@ public class Player : MonoBehaviour
 
 
 
-        //ApplyRunning();
+        ApplyRunning();
 
         ApplyRotacion();
         ApplyGravity();
@@ -89,19 +91,63 @@ public class Player : MonoBehaviour
 
 
     }
+    private void FixedUpdate()
+    {
+        
+    }
 
     private void ApplyRunning()
     {
-        if (Input.GetKey(KeyCode.LeftShift) )
-        {
-            if (_inicio && anim != 0f)
-            {
-                _anim.SetBool("isRunning", true);
-                _speed = 35f;
-                if (_timeRunning < _timeToStopRunning)
-                {
-                    _timeRunning += Time.deltaTime;
+        //if (Input.GetKey(KeyCode.LeftShift) )
+        //{
+            //if (_inicio && anim != 0f)
+            //{
+            //    _anim.SetBool("isRunning", true);
+            //    _speed = 35f;
+            //    if (_timeRunning < _timeToStopRunning)
+            //    {
+            //        _timeRunning += Time.deltaTime;
 
+            //    }
+            //    else
+            //    {
+            //        _inicio = false;
+            //        _timeRunning = 0f;
+            //        _speed = _speedGlobal;
+            //        _anim.SetBool("isRunning", false);
+            //    }
+            //}
+            //else
+            //{
+            //    _inicio = false;
+            //    _timeRunning = 0f;
+            //    _speed = _speedGlobal;
+            //    _anim.SetBool("isRunning", false);
+            //}
+            
+        //}
+
+        if (anim != 0f)
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                Debug.Log("GetKey");
+                if (_inicio)
+                {
+                    _anim.SetBool("isRunning", true);
+                    _speed = 40f;
+                    if (_timeRunning < _timeToStopRunning)
+                    {
+                        _timeRunning += Time.deltaTime;
+
+                    }
+                    else
+                    {
+                        _inicio = false;
+                        _timeRunning = 0f;
+                        _speed = _speedGlobal;
+                        _anim.SetBool("isRunning", false);
+                    }
                 }
                 else
                 {
@@ -111,28 +157,41 @@ public class Player : MonoBehaviour
                     _anim.SetBool("isRunning", false);
                 }
             }
-            else
-            {
-                _inicio = false;
-                _timeRunning = 0f;
-                _speed = _speedGlobal;
-                _anim.SetBool("isRunning", false);
-            }
-
+        }
+        else
+        {
+            
         }
         
 
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            StartCoroutine(LeftShiftRun());
+            cont++;
+            if (cont == 1)
+            {
+                StartCoroutine(LeftShiftRun());
+            }
+            else
+            {
+                _anim.SetBool("isRunning", false);
+            }
+            
+        }
+
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            //_timeRunning = 0f;
+            Debug.Log("GetKeyDown");
+
         }
     }
 
 
     private void ApplyMovement()  //28 speed
     {
-        
-
+        //_velocity = _direction * _speed;
+        //_velocity.y = _rb.velocity.y;
+        //_rb.velocity = _velocity;
         _rb.MovePosition(transform.position + _direction * _speed * Time.deltaTime);
         //_controller.Move(_direction * _speed * Time.deltaTime);
     }
@@ -165,7 +224,9 @@ public class Player : MonoBehaviour
 
     private IEnumerator LeftShiftRun()
     {
+        _anim.SetBool("isRunning", false);
         yield return new WaitForSeconds(_nextTimeToUse);
+        cont = 0;
         _inicio = true;
     }
 
