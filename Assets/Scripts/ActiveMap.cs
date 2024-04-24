@@ -12,6 +12,7 @@ public class ActiveMap : MonoBehaviour
     [SerializeField] private GameObject _objScena;
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _indication1;
+    [SerializeField] private GameObject _miniMap;
 
     [SerializeField] private bool _active;
 
@@ -38,7 +39,7 @@ public class ActiveMap : MonoBehaviour
             _indication1.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && _active)
+        if (Input.GetKeyDown(KeyCode.E) && _active)
         {
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = true;
@@ -47,8 +48,10 @@ public class ActiveMap : MonoBehaviour
             _camera2.SetActive(false);
             _mapItem.SetActive(false);
             _indication.SetActive(false);
-            _objScena.SetActive(true);
+            _objScena.SetActive(false);
             _player.SetActive(true);
+            this.gameObject.SetActive(false);
+            _miniMap.SetActive(true);
         }
     }
 

@@ -35,43 +35,50 @@ public class ControlRuleta : MonoBehaviour
     {
         if (_item1.activeSelf)
         {
-            Destroy(_item1x);
+            _item1x.SetActive(false);
+            //Destroy(_item1x);
         }
 
         if (_item2.activeSelf)
         {
-            Destroy(_item2x);
-
+            //Destroy(_item2x);
+            _item2x.SetActive(false);
         }
 
         if (_item3.activeSelf)
         {
-            Destroy(_item3x);
+            _item3x.SetActive(false);
+            // Destroy(_item3x);
         }
 
         if (_item4.activeSelf)
         {
-            Destroy(_item4x);
+            _item4x.SetActive(false);
+            //Destroy(_item4x);
         }
 
         if (_item5.activeSelf)
         {
-            Destroy(_item5x);
+            _item5x.SetActive(false);
+            //Destroy(_item5x);
         }
 
         if (_item6.activeSelf)
         {
-            Destroy(_item6x);
+            _item6x.SetActive(false);
+            //Destroy(_item6x);
         }
 
         if (_item7.activeSelf)
         {
-            Destroy(_item7x);
+            _item7x.SetActive(false);
+            //Destroy(_item7x);
         }
 
         if (_item8.activeSelf)
         {
-            Destroy(_item8x);
+            _item8x.SetActive(false);
+            //Destroy(_item8x);
         }
     }
 }
