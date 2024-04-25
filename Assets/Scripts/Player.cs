@@ -178,15 +178,9 @@ public class Player : MonoBehaviour
             {
                 _speed = _speedGlobal;
                 _anim.SetBool("isRunning", false);
+                cont = 0;
             }
             
-        }
-
-        if (Input.GetKeyDown(KeyCode.LeftShift))
-        {
-            //_timeRunning = 0f;
-            Debug.Log("GetKeyDown");
-
         }
     }
 
