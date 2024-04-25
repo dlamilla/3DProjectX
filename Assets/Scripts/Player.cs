@@ -46,6 +46,7 @@ public class Player : MonoBehaviour
 
     [SerializeField] private bool _inicio;
     [SerializeField] private int cont = 0;
+    [SerializeField] public bool _map;
 
     private void Awake()
     {
@@ -77,6 +78,7 @@ public class Player : MonoBehaviour
         {
             _footSteps.enabled = false;
         }
+
         _anim.SetFloat("Speed", Mathf.Abs(anim));
         _direction = new Vector3(_input.x, 0.0f, _input.y).normalized;
 

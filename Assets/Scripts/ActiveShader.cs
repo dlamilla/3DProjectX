@@ -28,8 +28,8 @@ public class ActiveShader : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && _active)
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            //Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
 
             _camera1.SetActive(false);
             _camera2.SetActive(true);
@@ -84,8 +84,8 @@ public class ActiveShader : MonoBehaviour
         _player.SetActive(true);
         
 
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = true;
+        //Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = true;
     }
 
 }

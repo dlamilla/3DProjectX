@@ -14,6 +14,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] private Collection _collect;
 
+    [SerializeField] private GameObject _miniMap;
+    [SerializeField] private GameObject _bigMap;
+
     public int cont = 0;
     private bool _active = true;
     // Start is called before the first frame update
@@ -37,25 +40,31 @@ public class GameManager : MonoBehaviour
             //Activate mouse
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                if (cont == 0)
-                {
+                Cursor.visible = true;
+                Cursor.lockState = CursorLockMode.None;
+                btn1.SetActive(true);
+                btn2.SetActive(true);
+                btn3.SetActive(true);
+                _player.GetComponent<Player>().enabled = false;
+                _bigMap.SetActive(false);
+                Time.timeScale = 0f;
+                //if (cont == 0)
+                //{
 
-                    cont++;
-                    Cursor.visible = true;
-                    Cursor.lockState = CursorLockMode.None;
-                    ActiveButtons();
-                    Time.timeScale = 0f;
-                }
-                else
-                {
-                    cont = 0;
-                    Time.timeScale = 1f;
-                    //Hide curser
-                    Cursor.visible = false;
-                    Cursor.lockState = CursorLockMode.Locked;
-                    ActiveButtons();
+                //    cont++;
 
-                }
+                //}
+                //else
+                //{
+                //    cont = 0;
+                //    Time.timeScale = 1f;
+                //    //Hide curser
+                //    Cursor.visible = false;
+                //    Cursor.lockState = CursorLockMode.Locked;
+                //    ActiveButtons();
+                //    _miniMap.SetActive(true);
+                //    _player.GetComponent<Player>().enabled = true;
+                //}
             }
 
             if (_collect._itemsCatch == 8)
@@ -85,5 +94,14 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         text.SetActive(false);
         _active = false;
+    }
+
+    public void ActiveMinimap()
+    {
+        bool mapActive = _player.GetComponent<Player>()._map;
+        if (mapActive)
+        {
+            _miniMap.SetActive(true);
+        }
     }
 }

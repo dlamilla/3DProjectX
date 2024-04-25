@@ -27,8 +27,8 @@ public class ActiveMap : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && _active)
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            //Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
 
             _camera1.SetActive(false);
             _camera2.SetActive(true);
@@ -41,8 +41,8 @@ public class ActiveMap : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && _active)
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = true;
+            //Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.visible = true;
 
             _camera1.SetActive(true);
             _camera2.SetActive(false);
@@ -50,6 +50,7 @@ public class ActiveMap : MonoBehaviour
             _indication.SetActive(false);
             _objScena.SetActive(false);
             _player.SetActive(true);
+            _player.GetComponent<Player>()._map = true;
             this.gameObject.SetActive(false);
             _miniMap.SetActive(true);
         }
