@@ -23,34 +23,69 @@ public class Player : MonoBehaviour
     [Header("Animaciones")]
     [SerializeField] private Animator _anim;
 
+    [Header("Correr")]
+    [SerializeField] private float _timeToStopRunning = 2f;
+    [SerializeField] private float _nextTimeToUse = 5f;
+
+    [Header("Materiales")]
+    [SerializeField] private Texture m_MainTexture1;
+    [SerializeField] private Texture m_MainTexture2;
+    [SerializeField] private Texture m_MainTexture3;
+    [SerializeField] private Renderer m_Renderer;
+
+    [SerializeField] private Transform _starPosition;
+
+    private AudioSource _footSteps;
     //private CharacterController _controller;
     private Rigidbody _rb;
     private Camera _mainCamera;
+    private float _timeRunning;
+    private float _speedGlobal;
+    private float anim;
+    private Vector3 _velocity;
 
-
+    [SerializeField] private bool _inicio;
+    [SerializeField] private int cont = 0;
+    [SerializeField] public bool _map;
 
     private void Awake()
     {
+        _footSteps = GetComponent<AudioSource>();
         //_controller = GetComponent<CharacterController>();
         _rb = GetComponent<Rigidbody>();
         _mainCamera = Camera.main;
+        _inicio = true;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        
-        
+
+        _speedGlobal = _speed;
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        _input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
-        float anim = _input.magnitude;
+        _input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        anim = _input.magnitude;
+        if (anim > 0f)
+        {
+            _footSteps.enabled = true;
+        }
+        else
+        {
+            _footSteps.enabled = false;
+        }
+
         _anim.SetFloat("Speed", Mathf.Abs(anim));
-        _direction = new Vector3(_input.x, 0.0f, _input.y);
+        _direction = new Vector3(_input.x, 0.0f, _input.y).normalized;
+
+
+
+
+        ApplyRunning();
 
         ApplyRotacion();
         ApplyGravity();
@@ -58,12 +93,104 @@ public class Player : MonoBehaviour
 
 
     }
-
-    private void ApplyMovement()
+    private void FixedUpdate()
     {
         
+    }
 
-        _rb.MovePosition(transform.position + _direction * _speed * Time.deltaTime);
+    private void ApplyRunning()
+    {
+        //if (Input.GetKey(KeyCode.LeftShift) )
+        //{
+            //if (_inicio && anim != 0f)
+            //{
+            //    _anim.SetBool("isRunning", true);
+            //    _speed = 35f;
+            //    if (_timeRunning < _timeToStopRunning)
+            //    {
+            //        _timeRunning += Time.deltaTime;
+
+            //    }
+            //    else
+            //    {
+            //        _inicio = false;
+            //        _timeRunning = 0f;
+            //        _speed = _speedGlobal;
+            //        _anim.SetBool("isRunning", false);
+            //    }
+            //}
+            //else
+            //{
+            //    _inicio = false;
+            //    _timeRunning = 0f;
+            //    _speed = _speedGlobal;
+            //    _anim.SetBool("isRunning", false);
+            //}
+            
+        //}
+
+        if (anim != 0f)
+        {
+            if (Input.GetKey(KeyCode.LeftShift))
+            {
+                Debug.Log("GetKey");
+                if (_inicio)
+                {
+                    _anim.SetBool("isRunning", true);
+                    _speed = 40f;
+                    if (_timeRunning < _timeToStopRunning)
+                    {
+                        _timeRunning += Time.deltaTime;
+
+                    }
+                    else
+                    {
+                        _inicio = false;
+                        _timeRunning = 0f;
+                        _speed = _speedGlobal;
+                        _anim.SetBool("isRunning", false);
+                    }
+                }
+                else
+                {
+                    _inicio = false;
+                    _timeRunning = 0f;
+                    _speed = _speedGlobal;
+                    _anim.SetBool("isRunning", false);
+                }
+            }
+        }
+        else
+        {
+            _speed = _speedGlobal;
+            _anim.SetBool("isRunning", false);
+        }
+        
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            cont++;
+            if (cont == 1)
+            {
+                StartCoroutine(LeftShiftRun());
+            }
+            else
+            {
+                _speed = _speedGlobal;
+                _anim.SetBool("isRunning", false);
+                cont = 0;
+            }
+            
+        }
+    }
+
+
+    private void ApplyMovement()  //28 speed
+    {
+        _velocity = _direction * _speed;
+        _velocity.y = _rb.velocity.y;
+        _rb.velocity = _velocity;
+        //_rb.MovePosition(transform.position + _direction * _speed * Time.deltaTime);
         //_controller.Move(_direction * _speed * Time.deltaTime);
     }
 
@@ -93,5 +220,42 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
     }
 
-    
+    private IEnumerator LeftShiftRun()
+    {
+        _speed = _speedGlobal;
+        _anim.SetBool("isRunning", false);
+        yield return new WaitForSeconds(_nextTimeToUse);
+        cont = 0;
+        _inicio = true;
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Enemigo cerca");
+            m_Renderer.material.SetTexture("_MainTex", m_MainTexture2);
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Enemy")
+        {
+            Debug.Log("Adios");
+            m_Renderer.material.SetTexture("_MainTex", m_MainTexture1);
+        }
+    }
+
+
+    public void MoveToStart()
+    {
+        transform.position = _starPosition.position;
+    }
+
+    public void DefaultRenderer()
+    {
+        m_Renderer.material.SetTexture("_MainTex", m_MainTexture1);
+    }
+
 }

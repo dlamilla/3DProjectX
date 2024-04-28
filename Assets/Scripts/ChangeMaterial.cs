@@ -16,19 +16,21 @@ public class ChangeMaterial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            m_Renderer.material.SetTexture("_MainTex", m_MainTexture1);
-        }
+        //if (Input.GetKeyDown(KeyCode.Z))
+        //{
+        //    m_Renderer.material.SetTexture("_MainTex", m_MainTexture1);
+        //}
 
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            m_Renderer.material.SetTexture("_MainTex", m_MainTexture2);
-        }
+        //if (Input.GetKeyDown(KeyCode.X))
+        //{
+        //    m_Renderer.material.SetTexture("_MainTex", m_MainTexture2);
+        //}
 
-        if (Input.GetKeyDown(KeyCode.C))
-        {
-            m_Renderer.material.SetTexture("_MainTex", m_MainTexture3);
-        }
+        //if (Input.GetKeyDown(KeyCode.C))
+        //{
+        //    m_Renderer.material.SetTexture("_MainTex", m_MainTexture3);
+        //}
     }
+
+    
 }

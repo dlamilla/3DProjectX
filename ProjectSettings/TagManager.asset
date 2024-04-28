@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Especial
+  - Ruleta
+  - Enemy
   layers:
   - Default
   - TransparentFX
@@ -12,13 +14,13 @@ TagManager:
   - 
   - Water
   - UI
+  - Player
+  - Enemy
   - 
-  - 
-  - 
-  - 
+  - Terrain
   - Efectos
-  - 
-  - 
+  - Minimap
+  - BigMap
   - 
   - 
   - 

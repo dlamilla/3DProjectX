@@ -7,7 +7,7 @@ public class Collection : MonoBehaviour
 {
 
     [SerializeField] private TextMeshProUGUI _text;
-    [SerializeField] private float _itemsCatch;
+    [SerializeField] public float _itemsCatch;
 
     // Start is called before the first frame update
     void Start()

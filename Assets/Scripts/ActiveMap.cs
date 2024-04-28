@@ -11,6 +11,9 @@ public class ActiveMap : MonoBehaviour
     [SerializeField] private GameObject _camera2; //10
     [SerializeField] private GameObject _objScena;
     [SerializeField] private GameObject _player;
+    [SerializeField] private GameObject _indication1;
+    [SerializeField] private GameObject _miniMap;
+    [SerializeField] private GameObject _itemBackground;
 
     [SerializeField] private bool _active;
 
@@ -25,8 +28,8 @@ public class ActiveMap : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.F) && _active)
         {
-            Cursor.lockState = CursorLockMode.None;
-            Cursor.visible = true;
+            //Cursor.lockState = CursorLockMode.None;
+            //Cursor.visible = true;
 
             _camera1.SetActive(false);
             _camera2.SetActive(true);
@@ -34,19 +37,24 @@ public class ActiveMap : MonoBehaviour
             _indication.SetActive(true);
             _objScena.SetActive(false);
             _player.SetActive(false);
+            _indication1.SetActive(false);
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && _active)
+        if (Input.GetKeyDown(KeyCode.E) && _active)
         {
-            Cursor.lockState = CursorLockMode.Locked;
-            Cursor.visible = true;
+            //Cursor.lockState = CursorLockMode.Locked;
+            //Cursor.visible = true;
 
             _camera1.SetActive(true);
             _camera2.SetActive(false);
             _mapItem.SetActive(false);
             _indication.SetActive(false);
-            _objScena.SetActive(true);
+            _objScena.SetActive(false);
             _player.SetActive(true);
+            _itemBackground.SetActive(true);
+            _player.GetComponent<Player>()._map = true;
+            this.gameObject.SetActive(false);
+            _miniMap.SetActive(true);
         }
     }
 
@@ -55,7 +63,7 @@ public class ActiveMap : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             _active = true;
-            Debug.Log("Entro");
+            _indication1.SetActive(true);
         }
     }
 
@@ -64,6 +72,7 @@ public class ActiveMap : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             _active = false;
+            _indication1.SetActive(false);
         }
     }
 }
