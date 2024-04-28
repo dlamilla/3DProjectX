@@ -13,6 +13,7 @@ public class ActiveMap : MonoBehaviour
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _indication1;
     [SerializeField] private GameObject _miniMap;
+    [SerializeField] private GameObject _itemBackground;
 
     [SerializeField] private bool _active;
 
@@ -50,6 +51,7 @@ public class ActiveMap : MonoBehaviour
             _indication.SetActive(false);
             _objScena.SetActive(false);
             _player.SetActive(true);
+            _itemBackground.SetActive(true);
             _player.GetComponent<Player>()._map = true;
             this.gameObject.SetActive(false);
             _miniMap.SetActive(true);

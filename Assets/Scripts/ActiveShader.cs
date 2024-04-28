@@ -14,6 +14,8 @@ public class ActiveShader : MonoBehaviour
     [SerializeField] private GameObject _activeRolutte;
     [SerializeField] private GameObject _indication1;
     [SerializeField] private GameObject _miniMap;
+    [SerializeField] private GameObject _itemUI;
+    [SerializeField] private GameObject _interfaceItems;
 
     [SerializeField] private bool _active;
 
@@ -32,6 +34,7 @@ public class ActiveShader : MonoBehaviour
             //Cursor.visible = true;
 
             _camera1.SetActive(false);
+            _interfaceItems.SetActive(false);
             _camera2.SetActive(true);
             _miniMap.SetActive(false);
             _item.SetActive(true);
@@ -76,10 +79,12 @@ public class ActiveShader : MonoBehaviour
         yield return new WaitForSeconds(2f);
         _indication1.SetActive(false);
         _camera1.SetActive(true);
+        _interfaceItems.SetActive(true);
         _camera2.SetActive(false);
         _miniMap.SetActive(true);
         _item.SetActive(false);
         _indication.SetActive(false);
+        _itemUI.SetActive(true);
         _activeRolutte.SetActive(true);
         _player.SetActive(true);
         

@@ -12,6 +12,7 @@ public class StartGameController : MonoBehaviour
     [SerializeField] private GameObject _rolutte;
     [SerializeField] private float _time;
     [SerializeField] private GameObject _limit;
+    
     private bool _start;
     // Start is called before the first frame update
     void Start()

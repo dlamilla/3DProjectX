@@ -6,6 +6,7 @@ public class ChangeMinimap : MonoBehaviour
 {
     [SerializeField] private GameObject _miniMap;
     [SerializeField] private GameObject _bigMap;
+    [SerializeField] private GameObject _interfaceItems;
     private Player _player;
     private int cont = 0;
 
@@ -30,10 +31,12 @@ public class ChangeMinimap : MonoBehaviour
                 _miniMap.SetActive(false);
                 _bigMap.SetActive(true);
                 _player.enabled = false;
+                _interfaceItems.SetActive(false);
             }
             else
             {
                 _miniMap.SetActive(true);
+                _interfaceItems.SetActive(true);
                 _bigMap.SetActive(false);
                 _player.enabled = true;
                 cont = 0;
