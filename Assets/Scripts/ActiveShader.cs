@@ -47,8 +47,11 @@ public class ActiveShader : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.E) && _active)
         {
-
-            StartCoroutine(StartShader());
+            if (_item.activeInHierarchy)
+            {
+                StartCoroutine(StartShader());
+            }
+            
             
 
             
