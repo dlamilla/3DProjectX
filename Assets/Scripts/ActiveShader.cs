@@ -11,7 +11,7 @@ public class ActiveShader : MonoBehaviour
     [SerializeField] private GameObject _objScena;
     [SerializeField] private GameObject _player;
     [SerializeField] private Item _itemX;
-    [SerializeField] private GameObject _activeRolutte;
+    //[SerializeField] private GameObject _activeRolutte;
     [SerializeField] private GameObject _indication1;
     [SerializeField] private GameObject _miniMap;
     [SerializeField] private GameObject _itemUI;
@@ -88,7 +88,7 @@ public class ActiveShader : MonoBehaviour
         _item.SetActive(false);
         _indication.SetActive(false);
         _itemUI.SetActive(true);
-        _activeRolutte.SetActive(true);
+        //_activeRolutte.SetActive(true);
         _player.SetActive(true);
         
 

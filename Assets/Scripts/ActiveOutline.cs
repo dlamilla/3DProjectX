@@ -9,7 +9,7 @@ public class ActiveOutline : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            _mesh.SetFloat("_Scale", 1.05f);
+            _mesh.SetFloat("_Scale", 1.1f);
         }
     }
 

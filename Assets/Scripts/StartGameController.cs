@@ -9,7 +9,7 @@ public class StartGameController : MonoBehaviour
     [SerializeField] private GameObject _indication;
     [SerializeField] private GameObject _map;
     [SerializeField] private GameObject _activeMap;
-    [SerializeField] private GameObject _rolutte;
+    //[SerializeField] private GameObject _rolutte;
     [SerializeField] private float _time;
     [SerializeField] private GameObject _limit;
     
@@ -58,7 +58,7 @@ public class StartGameController : MonoBehaviour
         _indication.SetActive(false);
         _map.SetActive(true);
         _activeMap.SetActive(true);
-        _rolutte.SetActive(true);
+        //_rolutte.SetActive(true);
         _limit.SetActive(false);
     }
 }
