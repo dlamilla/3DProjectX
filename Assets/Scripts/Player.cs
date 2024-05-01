@@ -175,7 +175,7 @@ public class Player : MonoBehaviour
                 if (_inicio)
                 {
                     _anim.SetBool("isRunning", true);
-                    _speed = 40f;
+                    _speed = 30;
                     if (_timeRunning < _timeToStopRunning)
                     {
                         _timeRunning += Time.deltaTime;
