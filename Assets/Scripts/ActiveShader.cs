@@ -6,7 +6,8 @@ public class ActiveShader : MonoBehaviour
 {
     [SerializeField] private GameObject _item;
     [SerializeField] private GameObject _indication;
-    [SerializeField] private GameObject _camera1; //20
+    [SerializeField] private GameObject _cameraThirdPerson; //20
+    [SerializeField] private GameObject _cameraFirstPerson;
     [SerializeField] private GameObject _camera2; //10
     [SerializeField] private GameObject _objScena;
     [SerializeField] private GameObject _player;
@@ -18,7 +19,7 @@ public class ActiveShader : MonoBehaviour
     [SerializeField] private GameObject _interfaceItems;
 
     [SerializeField] private bool _active;
-
+    private bool _ThirdOrFirst;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,12 +29,14 @@ public class ActiveShader : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        _ThirdOrFirst = _player.GetComponent<Player>()._FisrtToThird;
         if (Input.GetKeyDown(KeyCode.F) && _active)
         {
             //Cursor.lockState = CursorLockMode.None;
             //Cursor.visible = true;
 
-            _camera1.SetActive(false);
+            _cameraThirdPerson.SetActive(false);
+            _cameraFirstPerson.SetActive(false);
             _interfaceItems.SetActive(false);
             _camera2.SetActive(true);
             _miniMap.SetActive(false);
@@ -81,7 +84,14 @@ public class ActiveShader : MonoBehaviour
         _itemX.ItemCollect();
         yield return new WaitForSeconds(2f);
         _indication1.SetActive(false);
-        _camera1.SetActive(true);
+        if (_ThirdOrFirst)
+        {
+            _cameraFirstPerson.SetActive(true);
+        }
+        else
+        {
+            _cameraThirdPerson.SetActive(true);
+        }
         _interfaceItems.SetActive(true);
         _camera2.SetActive(false);
         _miniMap.SetActive(true);

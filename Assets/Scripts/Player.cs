@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -33,7 +34,20 @@ public class Player : MonoBehaviour
     [SerializeField] private Texture m_MainTexture3;
     [SerializeField] private Renderer m_Renderer;
 
-    [SerializeField] private Transform _starPosition;
+    //[SerializeField] private Transform _starPosition;
+
+    [Header("FPS")]
+    [SerializeField] private Transform _camFPS;
+    [SerializeField] private GameObject _firstPerson;
+    [SerializeField] private GameObject _cameraFPS;
+
+    [Header("ThirdPerson")]
+    [SerializeField] private GameObject _cameraThird;
+    [SerializeField] public bool _FisrtToThird;
+
+    [SerializeField] private bool _inicio;
+    [SerializeField] private int cont = 0;
+    [SerializeField] public bool _map;
 
     private AudioSource _footSteps;
     //private CharacterController _controller;
@@ -43,10 +57,8 @@ public class Player : MonoBehaviour
     private float _speedGlobal;
     private float anim;
     private Vector3 _velocity;
-
-    [SerializeField] private bool _inicio;
-    [SerializeField] private int cont = 0;
-    [SerializeField] public bool _map;
+    private int contFPS;
+    
 
     private void Awake()
     {
@@ -84,6 +96,30 @@ public class Player : MonoBehaviour
 
 
 
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            contFPS++;
+            if (contFPS == 1)
+            {
+                _FisrtToThird = true;
+                _cameraFPS.SetActive(true);
+                _firstPerson.SetActive(false);
+                _cameraThird.SetActive(false);
+            }
+            else
+            {
+                _FisrtToThird = false;
+                _cameraFPS.SetActive(false);
+                _firstPerson.SetActive(true);
+                _cameraThird.SetActive(true);
+                contFPS = 0;
+            }
+        }
+
+        if (_FisrtToThird)
+        {
+            transform.rotation = Quaternion.Euler(0f, _camFPS.rotation.eulerAngles.y, 0f);
+        }
 
         ApplyRunning();
 
@@ -93,6 +129,8 @@ public class Player : MonoBehaviour
 
 
     }
+
+
     private void FixedUpdate()
     {
         
@@ -250,7 +288,7 @@ public class Player : MonoBehaviour
 
     public void MoveToStart()
     {
-        transform.position = _starPosition.position;
+        //transform.position = _starPosition.position;
     }
 
     public void DefaultRenderer()
