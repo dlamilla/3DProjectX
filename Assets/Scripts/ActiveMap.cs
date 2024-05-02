@@ -16,6 +16,9 @@ public class ActiveMap : MonoBehaviour
     [SerializeField] private GameObject _miniMap;
     [SerializeField] private GameObject _itemBackground;
 
+    [Header("Sonido")]
+    [SerializeField] private AudioClip _sound;
+
     [SerializeField] private bool _active;
 
     // Start is called before the first frame update
@@ -47,6 +50,7 @@ public class ActiveMap : MonoBehaviour
         {
             //Cursor.lockState = CursorLockMode.Locked;
             //Cursor.visible = true;
+            AudioController.Instance.PlaySound(_sound);
             if (_ThirdOrFirst)
             {
                 _cameraFirstPerson.SetActive(true);

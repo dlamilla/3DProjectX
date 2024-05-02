@@ -22,7 +22,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _jumpPower;
 
     [Header("Animaciones")]
-    [SerializeField] private Animator _anim;
+    [SerializeField] public Animator _anim;
 
     [Header("Correr")]
     [SerializeField] private float _timeToStopRunning = 2f;

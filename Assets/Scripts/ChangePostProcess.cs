@@ -65,6 +65,9 @@ public class ChangePostProcess : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
+            _player.GetComponentInChildren<Animator>().SetFloat("Speed", 0f);
+            _player.GetComponent<AudioSource>().enabled = false;
+            _player.GetComponentInChildren<Animator>().SetBool("isRunning", false);
             StartCoroutine(ControlMaximo());
             GameObject obj = collision.gameObject;
             StartCoroutine(Enemigo(obj));
@@ -107,7 +110,7 @@ public class ChangePostProcess : MonoBehaviour
 
     private IEnumerator ControlMaximo()
     {
-        StartCoroutine(VignettePPV());
+        StartCoroutine(VignettePPV());  
         _player.GetComponent<Player>().enabled = false;
         yield return new WaitForSeconds(5f);
         _player.GetComponent<Player>().enabled = true;

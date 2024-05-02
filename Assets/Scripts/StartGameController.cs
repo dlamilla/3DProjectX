@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 public class StartGameController : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class StartGameController : MonoBehaviour
     //[SerializeField] private GameObject _rolutte;
     [SerializeField] private float _time;
     [SerializeField] private GameObject _limit;
+
+    [SerializeField] private PlayableDirector _scene;
+    [SerializeField] private Collider _sphere;
     
     private bool _start;
     // Start is called before the first frame update
@@ -34,8 +38,13 @@ public class StartGameController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            _interact.SetActive(true);
-            _start = true;
+            if (_sphere.enabled)
+            {
+                Debug.Log("Aca entre");
+                _interact.SetActive(true);
+                _start = true;
+            }
+            
         }
     }
 
@@ -43,8 +52,12 @@ public class StartGameController : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            _interact.SetActive(false);
-            _start = false;
+            if (_sphere.enabled)
+            {
+                _interact.SetActive(false);
+                _start = false;
+            }
+            
         }
     }
 
@@ -53,6 +66,7 @@ public class StartGameController : MonoBehaviour
         _player.enabled = false;
         _indication.SetActive(true);
         _interact.SetActive(false);
+        _scene.Play();
         yield return new WaitForSeconds(_time);
         _player.enabled = true;
         _indication.SetActive(false);
