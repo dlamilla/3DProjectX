@@ -23,6 +23,8 @@ public class ChangeMinimap : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float _input = _player.anim;
+        bool _isMap = _player._map;
         if (Input.GetKeyDown(KeyCode.M))
         {
             cont++;
@@ -30,7 +32,7 @@ public class ChangeMinimap : MonoBehaviour
             {
                 _miniMap.SetActive(false);
                 _bigMap.SetActive(true);
-                _player.enabled = false;
+                //_player.enabled = false;
                 _interfaceItems.SetActive(false);
             }
             else
@@ -38,10 +40,19 @@ public class ChangeMinimap : MonoBehaviour
                 _miniMap.SetActive(true);
                 _interfaceItems.SetActive(true);
                 _bigMap.SetActive(false);
-                _player.enabled = true;
+                //_player.enabled = true;
                 cont = 0;
             }
             
+
+        }
+
+        if (_input != 0f && _isMap)
+        {
+            _miniMap.SetActive(true);
+            _interfaceItems.SetActive(true);
+            _bigMap.SetActive(false);
+            //_player.enabled = true;
         }
     }
 }

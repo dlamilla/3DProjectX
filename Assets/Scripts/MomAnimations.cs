@@ -5,6 +5,7 @@ using UnityEngine;
 public class MomAnimations : MonoBehaviour
 {
     [SerializeField] private float _time;
+    [SerializeField] private Countdown _count;
     private Animator _anim;
     private void Awake()
     {
@@ -19,7 +20,11 @@ public class MomAnimations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        int tiempo = (int)_count.tiempoInicio;
+        if (tiempo <= 0)
+        {
+            CancelInvoke();
+        }
     }
 
     private void EmpezarAnimaciones()

@@ -6,7 +6,7 @@ using TMPro;
 public class Countdown : MonoBehaviour
 {
     [Header("Tiempo de inicio")]
-    [SerializeField] private float tiempoInicio = 15f;
+    [SerializeField] public float tiempoInicio;
     [SerializeField] private bool inicioTiempo;
 
     [Header("Texto Final")]
@@ -35,7 +35,7 @@ public class Countdown : MonoBehaviour
                 tiempoInicio -= Time.deltaTime;
                 int minutes = Mathf.FloorToInt(tiempoInicio / 60);
                 int seconds = Mathf.FloorToInt(tiempoInicio % 60);
-
+                Debug.Log(tiempoInicio);
                 contadorTMP.text = string.Format("{0:00}:{1:00}", minutes, seconds);
             }
             else

@@ -55,7 +55,7 @@ public class Player : MonoBehaviour
     private Camera _mainCamera;
     private float _timeRunning;
     private float _speedGlobal;
-    private float anim;
+    public float anim;
     private Vector3 _velocity;
     private int contFPS;
     

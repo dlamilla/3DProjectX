@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ChangeMaterial : MonoBehaviour
 {
-    public Texture m_MainTexture1, m_MainTexture2, m_MainTexture3;
+    [SerializeField] private Texture m_MainTexture1;
+    [SerializeField] private Texture m_MainTexture2;
+    [SerializeField] private Countdown _count;
     Renderer m_Renderer;
 
     // Start is called before the first frame update
@@ -16,6 +18,11 @@ public class ChangeMaterial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        int tiempo = (int)_count.tiempoInicio;
+        if (tiempo <= 0)
+        {
+            m_Renderer.material.SetTexture("_MainTex", m_MainTexture2);
+        }
         //if (Input.GetKeyDown(KeyCode.Z))
         //{
         //    m_Renderer.material.SetTexture("_MainTex", m_MainTexture1);
