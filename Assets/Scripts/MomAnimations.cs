@@ -20,11 +20,7 @@ public class MomAnimations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        int tiempo = (int)_count.tiempoInicio;
-        if (tiempo <= 0)
-        {
-            CancelInvoke();
-        }
+ 
     }
 
     private void EmpezarAnimaciones()
@@ -36,5 +32,10 @@ public class MomAnimations : MonoBehaviour
     {
         yield return new WaitForSeconds(_time);
         _anim.SetTrigger("inicio");
+    }
+
+    public void CancelarAnimacion()
+    {
+        CancelInvoke("EmpezarAnimaciones");
     }
 }

@@ -7,16 +7,17 @@ public class Countdown : MonoBehaviour
 {
     [Header("Tiempo de inicio")]
     [SerializeField] public float tiempoInicio;
-    [SerializeField] private bool inicioTiempo;
+    [SerializeField] public bool inicioTiempo;
 
     [Header("Texto Final")]
     [SerializeField] private TextMeshProUGUI contadorTMP;
+
     //[SerializeField] private GameObject textOleada;
 
     // Start is called before the first frame update
     void Start()
     {
-        inicioTiempo = true;
+        //inicioTiempo = true;
         //contadorTMP.gameObject.SetActive(true);
     }
 
@@ -33,9 +34,9 @@ public class Countdown : MonoBehaviour
             if (tiempoInicio > 0)
             {
                 tiempoInicio -= Time.deltaTime;
+                
                 int minutes = Mathf.FloorToInt(tiempoInicio / 60);
                 int seconds = Mathf.FloorToInt(tiempoInicio % 60);
-                Debug.Log(tiempoInicio);
                 contadorTMP.text = string.Format("{0:00}:{1:00}", minutes, seconds);
             }
             else

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
+
 public class StartGameController : MonoBehaviour
 {
     [SerializeField] private GameObject _interact;
@@ -13,11 +14,14 @@ public class StartGameController : MonoBehaviour
     //[SerializeField] private GameObject _rolutte;
     [SerializeField] private float _time;
     [SerializeField] private GameObject _limit;
+    [SerializeField] private GameObject _barraVida;
 
+    [Header("Animacion Inicio")]
     [SerializeField] private PlayableDirector _scene;
     [SerializeField] private Collider _sphere;
     
     private bool _start;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +36,7 @@ public class StartGameController : MonoBehaviour
             StartCoroutine(Conversation());
 
         }
+
     }
 
     private void OnTriggerEnter(Collider other)
@@ -66,6 +71,7 @@ public class StartGameController : MonoBehaviour
         _player.enabled = false;
         _indication.SetActive(true);
         _interact.SetActive(false);
+        _barraVida.SetActive(true);
         _scene.Play();
         yield return new WaitForSeconds(_time);
         _player.enabled = true;
@@ -74,5 +80,5 @@ public class StartGameController : MonoBehaviour
         _activeMap.SetActive(true);
         //_rolutte.SetActive(true);
         _limit.SetActive(false);
-    }
+    }   
 }

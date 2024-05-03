@@ -17,8 +17,9 @@ public class ActiveShader : MonoBehaviour
     [SerializeField] private GameObject _miniMap;
     [SerializeField] private GameObject _itemUI;
     [SerializeField] private GameObject _interfaceItems;
-
+    [SerializeField] private GameObject _barraVida;
     [SerializeField] private bool _active;
+    [SerializeField] private ChangeMaterial _restaurar;
     private bool _ThirdOrFirst;
     // Start is called before the first frame update
     void Start()
@@ -45,6 +46,7 @@ public class ActiveShader : MonoBehaviour
             _objScena.SetActive(false);
             _player.SetActive(false);
             _indication1.SetActive(false);
+            _barraVida.SetActive(false);
             this.gameObject.GetComponent<Collider>().enabled = false;
         }
 
@@ -100,8 +102,8 @@ public class ActiveShader : MonoBehaviour
         _itemUI.SetActive(true);
         //_activeRolutte.SetActive(true);
         _player.SetActive(true);
-        
-
+        _barraVida.SetActive(true);
+        _restaurar.RestaurarSalud(50f);
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = true;
     }

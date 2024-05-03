@@ -15,6 +15,7 @@ public class ActiveMap : MonoBehaviour
     [SerializeField] private GameObject _indication1;
     [SerializeField] private GameObject _miniMap;
     [SerializeField] private GameObject _itemBackground;
+    [SerializeField] private GameObject _barraVida;
 
     [Header("Sonido")]
     [SerializeField] private AudioClip _sound;
@@ -44,6 +45,7 @@ public class ActiveMap : MonoBehaviour
             _objScena.SetActive(false);
             _player.SetActive(false);
             _indication1.SetActive(false);
+            _barraVida.SetActive(false);
         }
 
         if (Input.GetKeyDown(KeyCode.E) && _active)
@@ -69,6 +71,7 @@ public class ActiveMap : MonoBehaviour
             _player.GetComponent<Player>()._map = true;
             this.gameObject.SetActive(false);
             _miniMap.SetActive(true);
+            _barraVida.SetActive(true);
         }
     }
 
