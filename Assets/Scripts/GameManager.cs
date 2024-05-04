@@ -17,6 +17,9 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _miniMap;
     [SerializeField] private GameObject _bigMap;
 
+    [SerializeField] private GameObject _winObject;
+
+
     public int cont = 0;
     private bool _active = true;
     // Start is called before the first frame update
@@ -89,8 +92,9 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Final()
     {
-        _text.text = "Return to the initial camp!!";
+        _text.text = "Go back with your Mommy!!";
         text.SetActive(true);
+        _winObject.SetActive(true);
         yield return new WaitForSeconds(2f);
         text.SetActive(false);
         _active = false;

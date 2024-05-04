@@ -103,7 +103,7 @@ public class ActiveShader : MonoBehaviour
         //_activeRolutte.SetActive(true);
         _player.SetActive(true);
         _barraVida.SetActive(true);
-        _restaurar.RestaurarSalud(50f);
+        _restaurar.RestaurarSalud(20f);
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = true;
     }
