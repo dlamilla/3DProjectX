@@ -19,6 +19,7 @@ public class ChangeMaterial : MonoBehaviour
     [Header("Animacion - Control final 1")]
     [SerializeField] private PlayableDirector _sceneDied;
     [SerializeField] private GameObject _cameraThird;
+    [SerializeField] private GameObject _cameraWin;
     [SerializeField] private float _timeDied = 9.5f;
     [SerializeField] private StartGameController _inicio;
     [SerializeField] private GameObject _player;
@@ -89,6 +90,7 @@ public class ChangeMaterial : MonoBehaviour
             StartCoroutine(LostGame());
             _sceneDied.Play();
             _cameraThird.SetActive(false);
+            _cameraWin.SetActive(false);
             _end = true;
         }
 

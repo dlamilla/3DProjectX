@@ -13,6 +13,7 @@ public class WinGameController : MonoBehaviour
     [SerializeField] private GameObject _son3;
     [SerializeField] private GameObject _family;
     [SerializeField] private GameObject _barraVida;
+    [SerializeField] private GameObject _itemUI;
 
     [Header("Textos")]
     [SerializeField] private GameObject _indication;
@@ -110,6 +111,9 @@ public class WinGameController : MonoBehaviour
         //Barra vida
         _barraVida.SetActive(false);
 
+        //Items
+        _itemUI.SetActive(false);
+
         _thankTMP.SetActive(true);
         yield return new WaitForSeconds(2f);
         _thankTMP.SetActive(false);
@@ -117,5 +121,8 @@ public class WinGameController : MonoBehaviour
         yield return new WaitForSeconds(2f);
         _credits.SetActive(false);
         _button.SetActive(true);
+
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
     }
 }

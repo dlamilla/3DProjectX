@@ -20,6 +20,7 @@ public class ActiveShader : MonoBehaviour
     [SerializeField] private GameObject _barraVida;
     [SerializeField] private bool _active;
     [SerializeField] private ChangeMaterial _restaurar;
+    [SerializeField] private float _health;
     private bool _ThirdOrFirst;
     // Start is called before the first frame update
     void Start()
@@ -103,7 +104,7 @@ public class ActiveShader : MonoBehaviour
         //_activeRolutte.SetActive(true);
         _player.SetActive(true);
         _barraVida.SetActive(true);
-        _restaurar.RestaurarSalud(20f);
+        _restaurar.RestaurarSalud(_health);
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = true;
     }
