@@ -70,7 +70,7 @@ public class GameManager : MonoBehaviour
                 //}
             }
 
-            if (_collect._itemsCatch == 8)
+            if (_collect._itemsCatch == 8 || _collect._itemsCatchBckp == 8)
             {
                 if (_active)
                 {

@@ -8,7 +8,8 @@ public class StartGameController : MonoBehaviour
 {
     [SerializeField] private GameObject _interact;
     [SerializeField] private Player _player;
-    [SerializeField] private GameObject _indication;
+    [SerializeField] private GameObject _indication1;
+    [SerializeField] private GameObject _indication2;
     [SerializeField] private GameObject _map;
     [SerializeField] private GameObject _activeMap;
     //[SerializeField] private GameObject _rolutte;
@@ -69,13 +70,16 @@ public class StartGameController : MonoBehaviour
     private IEnumerator Conversation()
     {
         _player.enabled = false;
-        _indication.SetActive(true);
+        _indication1.SetActive(true);
         _interact.SetActive(false);
         _barraVida.SetActive(true);
         _scene.Play();
-        yield return new WaitForSeconds(_time);
+        yield return new WaitForSeconds(_time);  //9f
+        _indication1.SetActive(false);
+        _indication2.SetActive(true);
+        yield return new WaitForSeconds(3f);
         _player.enabled = true;
-        _indication.SetActive(false);
+        _indication2.SetActive(false);
         _map.SetActive(true);
         _activeMap.SetActive(true);
         //_rolutte.SetActive(true);

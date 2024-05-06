@@ -8,6 +8,7 @@ public class Collection : MonoBehaviour
 
     [SerializeField] private TextMeshProUGUI _text;
     [SerializeField] public float _itemsCatch;
+    [SerializeField] public float _itemsCatchBckp;
 
     // Start is called before the first frame update
     void Start()
@@ -28,4 +29,8 @@ public class Collection : MonoBehaviour
         _itemsCatch += item;
     }
 
+    public void ItemSum1(float item)
+    {
+        _itemsCatchBckp = item;
+    }
 }

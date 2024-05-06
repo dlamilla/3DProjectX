@@ -24,6 +24,8 @@ public class ControlRuleta : MonoBehaviour
     [SerializeField] private GameObject _item7x;
     [SerializeField] private GameObject _item8x;
 
+    [SerializeField] private Collection _itemCollect;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -79,6 +81,11 @@ public class ControlRuleta : MonoBehaviour
         {
             _item8x.SetActive(false);
             //Destroy(_item8x);
+        }
+
+        if (_item1.activeSelf && _item2.activeSelf && _item3.activeSelf && _item4.activeSelf && _item5.activeSelf && _item6.activeSelf && _item7.activeSelf && _item8.activeSelf)
+        {
+            _itemCollect.ItemSum1(8f);
         }
     }
 }
