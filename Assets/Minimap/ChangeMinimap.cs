@@ -25,27 +25,31 @@ public class ChangeMinimap : MonoBehaviour
     {
         float _input = _player.anim;
         bool _isMap = _player._map;
-        if (Input.GetKeyDown(KeyCode.M))
+        if (_isMap)
         {
-            cont++;
-            if (cont == 1)
+            if (Input.GetKeyDown(KeyCode.Tab))
             {
-                _miniMap.SetActive(false);
-                _bigMap.SetActive(true);
-                //_player.enabled = false;
-                _interfaceItems.SetActive(false);
-            }
-            else
-            {
-                _miniMap.SetActive(true);
-                _interfaceItems.SetActive(true);
-                _bigMap.SetActive(false);
-                //_player.enabled = true;
-                cont = 0;
-            }
-            
+                cont++;
+                if (cont == 1)
+                {
+                    _miniMap.SetActive(false);
+                    _bigMap.SetActive(true);
+                    //_player.enabled = false;
+                    _interfaceItems.SetActive(false);
+                }
+                else
+                {
+                    _miniMap.SetActive(true);
+                    _interfaceItems.SetActive(true);
+                    _bigMap.SetActive(false);
+                    //_player.enabled = true;
+                    cont = 0;
+                }
 
+
+            }
         }
+        
 
         if (_input != 0f && _isMap)
         {

@@ -54,7 +54,7 @@ public class ChangeMaterial : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
 
         //if (Input.GetKeyDown(KeyCode.Z))
         //{
@@ -70,7 +70,10 @@ public class ChangeMaterial : MonoBehaviour
         //{
         //    m_Renderer.material.SetTexture("_MainTex", m_MainTexture3);
         //}
-        if (!_inicio.enabled && Time.timeScale != 0f)
+
+        bool activo = _player.GetComponent<Player>().enabled;
+
+        if (!_inicio.enabled && Time.timeScale != 0f && activo)
         {
             if (_end)
             {

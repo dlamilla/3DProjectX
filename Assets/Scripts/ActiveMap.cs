@@ -43,6 +43,7 @@ public class ActiveMap : MonoBehaviour
             _mapItem.SetActive(true);
             _indication.SetActive(true);
             _objScena.SetActive(false);
+            _player.GetComponent<Player>().enabled = false;
             _player.SetActive(false);
             _indication1.SetActive(false);
             _barraVida.SetActive(false);
@@ -66,6 +67,7 @@ public class ActiveMap : MonoBehaviour
             _mapItem.SetActive(false);
             _indication.SetActive(false);
             _objScena.SetActive(false);
+            _player.GetComponent<Player>().enabled = true;
             _player.SetActive(true);
             _itemBackground.SetActive(true);
             _player.GetComponent<Player>()._map = true;

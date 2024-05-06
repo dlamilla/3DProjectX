@@ -45,6 +45,7 @@ public class ActiveShader : MonoBehaviour
             _item.SetActive(true);
             _indication.SetActive(true);
             _objScena.SetActive(false);
+            _player.GetComponent<Player>().enabled = false;
             _player.SetActive(false);
             _indication1.SetActive(false);
             _barraVida.SetActive(false);
@@ -102,6 +103,7 @@ public class ActiveShader : MonoBehaviour
         _indication.SetActive(false);
         _itemUI.SetActive(true);
         //_activeRolutte.SetActive(true);
+        _player.GetComponent<Player>().enabled = true;
         _player.SetActive(true);
         _barraVida.SetActive(true);
         _restaurar.RestaurarSalud(_health);
