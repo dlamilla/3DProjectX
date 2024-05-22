@@ -29,7 +29,7 @@ public class ChangeMinimap : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Tab))
             {
-                cont++;
+                /* cont++;
                 if (cont == 1)
                 {
                     _miniMap.SetActive(false);
@@ -44,19 +44,34 @@ public class ChangeMinimap : MonoBehaviour
                     _bigMap.SetActive(false);
                     //_player.enabled = true;
                     cont = 0;
+                }*/
+
+                if (_miniMap.activeSelf)
+                {
+                    _miniMap.SetActive(false);
+                    _bigMap.SetActive(true);
+                    //_player.enabled = false;
+                    _interfaceItems.SetActive(false);
+                }else
+                {
+                    _miniMap.SetActive(true);
+                    _interfaceItems.SetActive(true);
+                    _bigMap.SetActive(false);
                 }
 
 
             }
+
+            if (_input != 0f)
+            {
+                _miniMap.SetActive(true);
+                _interfaceItems.SetActive(true);
+                _bigMap.SetActive(false);
+                //_player.enabled = true;
+            }
         }
         
 
-        if (_input != 0f && _isMap)
-        {
-            _miniMap.SetActive(true);
-            _interfaceItems.SetActive(true);
-            _bigMap.SetActive(false);
-            //_player.enabled = true;
-        }
+        
     }
 }
