@@ -7,8 +7,8 @@ TerrainLayer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: PisoVerde
-  m_DiffuseTexture: {fileID: 2800000, guid: 499840014bd11b64ba85718b38a91f74, type: 3}
-  m_NormalMapTexture: {fileID: 0}
+  m_DiffuseTexture: {fileID: 2800000, guid: 6641ca590cc0285498a4cf92b89e9c4e, type: 3}
+  m_NormalMapTexture: {fileID: 2800000, guid: cd4cda83d8343464eb2c182a83b1e175, type: 3}
   m_MaskMapTexture: {fileID: 0}
   m_TileSize: {x: 2, y: 2}
   m_TileOffset: {x: 0, y: 0}
