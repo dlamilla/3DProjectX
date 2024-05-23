@@ -18,49 +18,6 @@ public class ChangePostProcess : MonoBehaviour
     {
         _ppv.profile.TryGetSettings(out _vignette);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //if (Input.GetKeyDown(KeyCode.J))
-        //{
-        //    StartCoroutine(VignettePPV());
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.K))
-        //{
-        //    StartCoroutine(VignetteDefault());
-        //}
-        
-
-                
-
-
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
-
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
-
-        }
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-        if (other.gameObject.tag == "Enemy")
-        {
-            
-        }
-    }
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.tag == "Enemy")
@@ -111,12 +68,12 @@ public class ChangePostProcess : MonoBehaviour
 
     private IEnumerator ControlMaximo()
     {
-        StartCoroutine(VignettePPV());  
+        //StartCoroutine(VignettePPV());  
         _player.GetComponent<Player>().enabled = false;
         yield return new WaitForSeconds(5f);
         _player.GetComponent<Player>().enabled = true;
         _player.GetComponent<Player>().DefaultRenderer();
-        StartCoroutine(VignetteDefault());
+        //StartCoroutine(VignetteDefault());
     }
 
     private IEnumerator Enemigo(GameObject obj)

@@ -71,7 +71,7 @@ public class ChangeMaterial : MonoBehaviour
         //    m_Renderer.material.SetTexture("_MainTex", m_MainTexture3);
         //}
 
-        bool activo = _player.GetComponent<Player>().enabled;
+        bool activo = _player.activeSelf;
 
         if (!_inicio.enabled && Time.timeScale != 0f && activo)
         {

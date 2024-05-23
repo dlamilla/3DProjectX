@@ -7,7 +7,8 @@ using UnityEngine.Playables;
 public class StartGameController : MonoBehaviour
 {
     [SerializeField] private GameObject _interact;
-    [SerializeField] private Player _player;
+    [SerializeField] private GameObject _player;
+    [SerializeField] private Transform _position;
     [SerializeField] private GameObject _indication1;
     [SerializeField] private GameObject _indication2;
     [SerializeField] private GameObject _map;
@@ -69,7 +70,8 @@ public class StartGameController : MonoBehaviour
 
     private IEnumerator Conversation()
     {
-        _player.enabled = false;
+       // _player.GetComponent<>
+        
         _indication1.SetActive(true);
         _interact.SetActive(false);
         _barraVida.SetActive(true);
@@ -78,11 +80,12 @@ public class StartGameController : MonoBehaviour
         _indication1.SetActive(false);
         _indication2.SetActive(true);
         yield return new WaitForSeconds(3f);
-        _player.enabled = true;
         _indication2.SetActive(false);
         _map.SetActive(true);
         _activeMap.SetActive(true);
         //_rolutte.SetActive(true);
         _limit.SetActive(false);
+        _player.GetComponent<Transform>().position = _position.position;
+        _player.GetComponent<Transform>().rotation = _position.rotation;
     }   
 }

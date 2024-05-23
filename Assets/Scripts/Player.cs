@@ -13,20 +13,22 @@ public class Player : MonoBehaviour
     [Header("Rotacion")]
     [SerializeField] private float _rotationSpeed = 500f;
 
-    [Header("Gravedad")]
-    //[SerializeField] private float _gravityMultiplier = 3.0f;
-    //private float _gravity = -9.81f;
-    //private float _velocity;
-
     [Header("Salto")]
     [SerializeField] private float _jumpPower;
 
     [Header("Animaciones")]
     [SerializeField] public Animator _anim;
 
-    [Header("Correr")]
-    [SerializeField] private float _timeToStopRunning = 2f;
-    [SerializeField] private float _nextTimeToUse = 5f;
+    [Header("Correr")]   
+    [SerializeField] private float _speedExtra;
+    [SerializeField] private float _timeRunning;
+    private float _timeCurrentRunning;
+    private float _timeNextRunning;
+    [SerializeField] private float _timeBetweenRun;
+    private bool _canRun = true;
+    private bool _isRunning = false;
+    private float _speedBase;
+
 
     [Header("Materiales")]
     [SerializeField] private Texture m_MainTexture1;
@@ -44,17 +46,12 @@ public class Player : MonoBehaviour
     [Header("ThirdPerson")]
     [SerializeField] private GameObject _cameraThird;
     [SerializeField] public bool _FisrtToThird;
-
-    [SerializeField] private bool _inicio;
-    [SerializeField] private int cont = 0;
     [SerializeField] public bool _map;
 
     private AudioSource _footSteps;
     //private CharacterController _controller;
     private Rigidbody _rb;
     private Camera _mainCamera;
-    private float _timeRunning;
-    private float _speedGlobal;
     public float anim;
     private Vector3 _velocity;
     private int contFPS;
@@ -66,15 +63,13 @@ public class Player : MonoBehaviour
         //_controller = GetComponent<CharacterController>();
         _rb = GetComponent<Rigidbody>();
         _mainCamera = Camera.main;
-        _inicio = true;
     }
 
     // Start is called before the first frame update
     void Start()
     {
-
-        _speedGlobal = _speed;
-
+        _speedBase = _speed;
+        _timeCurrentRunning = _timeRunning;
     }
 
     // Update is called once per frame
@@ -90,12 +85,22 @@ public class Player : MonoBehaviour
         {
             _footSteps.enabled = false;
         }
-
+        
         _anim.SetFloat("Speed", Mathf.Abs(anim));
         _direction = new Vector3(_input.x, 0.0f, _input.y).normalized;
 
+        ChangePOV();
+        ApplyRunning();
+        ApplyRotacion();
+    }
 
 
+    private void FixedUpdate()
+    {
+        ApplyMovement(_direction);
+    }
+
+    private void ChangePOV(){
         if (Input.GetKeyDown(KeyCode.V))
         {
             contFPS++;
@@ -120,130 +125,58 @@ public class Player : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(0f, _camFPS.rotation.eulerAngles.y, 0f);
         }
-
-        ApplyRunning();
-
-        ApplyRotacion();
-        ApplyGravity();
-        ApplyMovement();
-
-
-    }
-
-
-    private void FixedUpdate()
-    {
-        
     }
 
     private void ApplyRunning()
     {
-        //if (Input.GetKey(KeyCode.LeftShift) )
-        //{
-            //if (_inicio && anim != 0f)
-            //{
-            //    _anim.SetBool("isRunning", true);
-            //    _speed = 35f;
-            //    if (_timeRunning < _timeToStopRunning)
-            //    {
-            //        _timeRunning += Time.deltaTime;
-
-            //    }
-            //    else
-            //    {
-            //        _inicio = false;
-            //        _timeRunning = 0f;
-            //        _speed = _speedGlobal;
-            //        _anim.SetBool("isRunning", false);
-            //    }
-            //}
-            //else
-            //{
-            //    _inicio = false;
-            //    _timeRunning = 0f;
-            //    _speed = _speedGlobal;
-            //    _anim.SetBool("isRunning", false);
-            //}
-            
-        //}
-
-        if (anim != 0f)
+        if (Input.GetKeyDown(KeyCode.LeftShift) && _canRun)
         {
-            if (Input.GetKey(KeyCode.LeftShift))
-            {
-                Debug.Log("GetKey");
-                if (_inicio)
-                {
-                    _anim.SetBool("isRunning", true);
-                    _speed = 30;
-                    if (_timeRunning < _timeToStopRunning)
-                    {
-                        _timeRunning += Time.deltaTime;
-
-                    }
-                    else
-                    {
-                        _inicio = false;
-                        _timeRunning = 0f;
-                        _speed = _speedGlobal;
-                        _anim.SetBool("isRunning", false);
-                    }
-                }
-                else
-                {
-                    _inicio = false;
-                    _timeRunning = 0f;
-                    _speed = _speedGlobal;
-                    _anim.SetBool("isRunning", false);
-                }
-            }
+            _speed = _speedExtra;
+            _isRunning = true;
         }
-        else
-        {
-            _speed = _speedGlobal;
-            _anim.SetBool("isRunning", false);
-        }
-        
 
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
-            cont++;
-            if (cont == 1)
+            _speed = _speedBase;
+            _isRunning = false;
+            _anim.SetBool("isRunning",false);
+        }
+
+        if (Mathf.Abs(anim) >= 0.1f && _isRunning)
+        {
+            if (_timeCurrentRunning > 0)
             {
-                StartCoroutine(LeftShiftRun());
-            }
-            else
+                _anim.SetBool("isRunning",true);
+                _timeCurrentRunning -= Time.deltaTime;
+                
+            }else
             {
-                _speed = _speedGlobal;
-                _anim.SetBool("isRunning", false);
-                cont = 0;
+                _anim.SetBool("isRunning",false);
+                _speed = _speedBase;
+                _isRunning = false;
+                _canRun = false;
+                _timeNextRunning = Time.time + _timeBetweenRun;
             }
-            
+        }
+
+        if (!_isRunning && _timeCurrentRunning <= _timeRunning && Time.time >= _timeNextRunning)
+        {
+            _timeCurrentRunning += Time.deltaTime;
+            if (_timeCurrentRunning >= _timeRunning)
+            {
+                _canRun = true;
+            }
         }
     }
 
 
-    private void ApplyMovement()  //28 speed
+    private void ApplyMovement(Vector3 dirPlayer)  //28 speed
     {
-        _velocity = _direction * _speed;
+        _velocity = dirPlayer * _speed;
         _velocity.y = _rb.velocity.y;
         _rb.velocity = _velocity;
         //_rb.MovePosition(transform.position + _direction * _speed * Time.deltaTime);
         //_controller.Move(_direction * _speed * Time.deltaTime);
-    }
-
-    private void ApplyGravity()
-    {
-        //if (IsGrounded() && _velocity < 0.0f)
-        //{
-        //    _velocity = -1.0f;
-        //}
-        //else
-        //{
-        //    _velocity += _gravity * _gravityMultiplier * Time.deltaTime;
-        //}
-        
-        //_direction.y = _velocity;
     }
 
     private void ApplyRotacion()
@@ -256,15 +189,6 @@ public class Player : MonoBehaviour
         _direction = Quaternion.Euler(0.0f, _mainCamera.transform.eulerAngles.y, 0.0f) * new Vector3(_input.x, 0.0f, _input.y);
         var targetRotation = Quaternion.LookRotation(_direction, Vector3.up);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
-    }
-
-    private IEnumerator LeftShiftRun()
-    {
-        _speed = _speedGlobal;
-        _anim.SetBool("isRunning", false);
-        yield return new WaitForSeconds(_nextTimeToUse);
-        cont = 0;
-        _inicio = true;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -8,7 +8,6 @@ public class ChangeMinimap : MonoBehaviour
     [SerializeField] private GameObject _bigMap;
     [SerializeField] private GameObject _interfaceItems;
     private Player _player;
-    private int cont = 0;
 
     private void Awake()
     {
