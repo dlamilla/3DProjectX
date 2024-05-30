@@ -18,8 +18,13 @@ public class Player : MonoBehaviour
 
     /*[Header("Animaciones")]
     [SerializeField] public Animator _anim;*/
+    [Header("RayCast")]
+    [SerializeField] private Transform _camera;
+    [SerializeField] private float _rayDistance;
+    [SerializeField] private LayerMask _layerInterac;
+    [SerializeField] private GameObject _interact;
 
-    [Header("Correr")]   
+    [Header("Correr")]
     [SerializeField] private float _speedExtra;
     [SerializeField] private float _timeRunning;
     private float _timeCurrentRunning;
@@ -55,7 +60,7 @@ public class Player : MonoBehaviour
     public float anim;
     private Vector3 _velocity;
     //private int contFPS;
-    
+
 
     private void Awake()
     {
@@ -85,13 +90,17 @@ public class Player : MonoBehaviour
         {
             _footSteps.enabled = false;
         }
-        
+
         //_anim.SetFloat("Speed", Mathf.Abs(anim));
         _direction = new Vector3(_input.x, 0.0f, _input.y).normalized;
 
         ChangePOV();
         ApplyRunning();
         ApplyRotacion();
+
+        RayCastCamera();
+
+
     }
 
 
@@ -100,7 +109,8 @@ public class Player : MonoBehaviour
         ApplyMovement(_direction);
     }
 
-    private void ChangePOV(){
+    private void ChangePOV()
+    {
         /*if (Input.GetKeyDown(KeyCode.V))
         {
             contFPS++;
@@ -148,8 +158,9 @@ public class Player : MonoBehaviour
             {
                 //_anim.SetBool("isRunning",true);
                 _timeCurrentRunning -= Time.deltaTime;
-                
-            }else
+
+            }
+            else
             {
                 //_anim.SetBool("isRunning",false);
                 _speed = _speedBase;
@@ -208,9 +219,22 @@ public class Player : MonoBehaviour
     }
 
 
-    public void MoveToStart()
+    public void RayCastCamera()
     {
-        //transform.position = _starPosition.position;
+        Debug.DrawRay(_camera.position, _camera.forward * _rayDistance, Color.red);
+        RaycastHit hit;
+        if (Physics.Raycast(_camera.position, _camera.forward, out hit, _rayDistance, _layerInterac))
+        {
+            _interact.SetActive(true);
+            if (Input.GetKeyDown(KeyCode.F))
+            {
+                Debug.Log(hit.transform.name);
+                hit.transform.GetComponent<Interact>().Interactable();
+            }
+        }else
+        {
+            _interact.SetActive(false);
+        }
     }
 
     public void DefaultRenderer()

@@ -19,7 +19,7 @@ public class ActiveShader : MonoBehaviour
     [SerializeField] private GameObject _interfaceItems;
     [SerializeField] private GameObject _barraVida;
     [SerializeField] private bool _active;
-    [SerializeField] private ChangeMaterial _restaurar;
+    [SerializeField] private GameOver _restaurar;
     [SerializeField] private float _health;
     private bool _ThirdOrFirst;
     // Start is called before the first frame update
