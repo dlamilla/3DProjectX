@@ -47,7 +47,6 @@ public class StartGameController : MonoBehaviour
         {
             if (_sphere.enabled)
             {
-                Debug.Log("Aca entre");
                 _interact.SetActive(true);
                 _start = true;
             }

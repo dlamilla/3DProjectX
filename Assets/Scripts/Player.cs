@@ -16,8 +16,8 @@ public class Player : MonoBehaviour
     [Header("Salto")]
     [SerializeField] private float _jumpPower;
 
-    [Header("Animaciones")]
-    [SerializeField] public Animator _anim;
+    /*[Header("Animaciones")]
+    [SerializeField] public Animator _anim;*/
 
     [Header("Correr")]   
     [SerializeField] private float _speedExtra;
@@ -54,7 +54,7 @@ public class Player : MonoBehaviour
     private Camera _mainCamera;
     public float anim;
     private Vector3 _velocity;
-    private int contFPS;
+    //private int contFPS;
     
 
     private void Awake()
@@ -86,7 +86,7 @@ public class Player : MonoBehaviour
             _footSteps.enabled = false;
         }
         
-        _anim.SetFloat("Speed", Mathf.Abs(anim));
+        //_anim.SetFloat("Speed", Mathf.Abs(anim));
         _direction = new Vector3(_input.x, 0.0f, _input.y).normalized;
 
         ChangePOV();
@@ -101,7 +101,7 @@ public class Player : MonoBehaviour
     }
 
     private void ChangePOV(){
-        if (Input.GetKeyDown(KeyCode.V))
+        /*if (Input.GetKeyDown(KeyCode.V))
         {
             contFPS++;
             if (contFPS == 1)
@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
                 _cameraThird.SetActive(true);
                 contFPS = 0;
             }
-        }
+        }*/
 
         if (_FisrtToThird)
         {
@@ -139,19 +139,19 @@ public class Player : MonoBehaviour
         {
             _speed = _speedBase;
             _isRunning = false;
-            _anim.SetBool("isRunning",false);
+            //_anim.SetBool("isRunning",false);
         }
 
         if (Mathf.Abs(anim) >= 0.1f && _isRunning)
         {
             if (_timeCurrentRunning > 0)
             {
-                _anim.SetBool("isRunning",true);
+                //_anim.SetBool("isRunning",true);
                 _timeCurrentRunning -= Time.deltaTime;
                 
             }else
             {
-                _anim.SetBool("isRunning",false);
+                //_anim.SetBool("isRunning",false);
                 _speed = _speedBase;
                 _isRunning = false;
                 _canRun = false;
@@ -195,7 +195,6 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("Enemigo cerca");
             m_Renderer.material.SetTexture("_MainTex", m_MainTexture2);
         }
     }
@@ -204,7 +203,6 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "Enemy")
         {
-            Debug.Log("Adios");
             m_Renderer.material.SetTexture("_MainTex", m_MainTexture1);
         }
     }
