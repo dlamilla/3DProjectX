@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _speed = 5f;
     private Vector2 _input;
     private Vector3 _direction;
+    public bool canMove = true;
 
     [Header("Rotacion")]
     [SerializeField] private float _rotationSpeed = 500f;
@@ -59,6 +60,7 @@ public class Player : MonoBehaviour
     private Camera _mainCamera;
     public float anim;
     private Vector3 _velocity;
+    RaycastHit hit;
     //private int contFPS;
 
 
@@ -80,26 +82,30 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
-        anim = _input.magnitude;
-        if (anim > 0f)
+        if (canMove)
         {
-            _footSteps.enabled = true;
-        }
-        else
-        {
-            _footSteps.enabled = false;
-        }
+            _input = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+            anim = _input.magnitude;
+            if (anim > 0f)
+            {
+                _footSteps.enabled = true;
+            }
+            else
+            {
+                _footSteps.enabled = false;
+            }
 
-        //_anim.SetFloat("Speed", Mathf.Abs(anim));
-        _direction = new Vector3(_input.x, 0.0f, _input.y).normalized;
+            //_anim.SetFloat("Speed", Mathf.Abs(anim));
+            _direction = new Vector3(_input.x, 0.0f, _input.y).normalized;
 
-        ChangePOV();
-        ApplyRunning();
-        ApplyRotacion();
+            ChangePOV();
+            ApplyRunning();
+            ApplyRotacion();
+
+
+        }
 
         RayCastCamera();
-
 
     }
 
@@ -222,16 +228,37 @@ public class Player : MonoBehaviour
     public void RayCastCamera()
     {
         Debug.DrawRay(_camera.position, _camera.forward * _rayDistance, Color.red);
-        RaycastHit hit;
+
         if (Physics.Raycast(_camera.position, _camera.forward, out hit, _rayDistance, _layerInterac))
         {
             _interact.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.F))
+            if (Input.GetKeyDown(KeyCode.F)) // Map. Item. StartGame. EndGame.
             {
-                Debug.Log(hit.transform.name);
-                hit.transform.GetComponent<Interact>().Interactable();
+                if (hit.transform.CompareTag("StartGame"))
+                {
+                    Debug.Log(hit.transform.name);
+                    hit.transform.GetComponent<Interact>().Interactable();
+                }
+
+                if (hit.transform.CompareTag("Map"))
+                {
+                    Debug.Log("Estoy aca");
+                    Debug.Log(hit.transform.name);
+                    hit.transform.GetComponent<Interact>().Interactable();
+                    //if (hit.transform.GetComponent<Interact>().canPickUp)
+                    //{
+                        if (Input.GetKeyDown(KeyCode.E))
+                        {
+                            Debug.Log("A"); 
+                            hit.transform.GetComponent<PickUp>().PickUpItem();
+
+                        }
+                    //}
+                }
+
             }
-        }else
+        }
+        else
         {
             _interact.SetActive(false);
         }

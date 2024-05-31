@@ -7,6 +7,8 @@ TagManager:
   - Especial
   - Ruleta
   - Enemy
+  - Map
+  - StartGame
   layers:
   - Default
   - TransparentFX

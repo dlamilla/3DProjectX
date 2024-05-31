@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Interact : MonoBehaviour
 {
+    [SerializeField] public bool canPickUp = false;
     public virtual void Interactable()
     {
 
