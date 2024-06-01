@@ -46,7 +46,7 @@ public class GameOver : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_Renderer = GetComponent<Renderer>();
+        m_Renderer = GetComponentInChildren<Renderer>();
         vida = vidaMax;
         ActualizarUI(vida, vidaMax);
     }

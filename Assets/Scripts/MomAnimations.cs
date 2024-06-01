@@ -20,7 +20,7 @@ public class MomAnimations : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
- 
+
     }
 
     private void EmpezarAnimaciones()
@@ -37,5 +37,10 @@ public class MomAnimations : MonoBehaviour
     public void CancelarAnimacion()
     {
         CancelInvoke("EmpezarAnimaciones");
+    }
+
+    private void OnDisable()
+    {
+        CancelarAnimacion();
     }
 }

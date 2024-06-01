@@ -31,17 +31,27 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        bool canFollow = _player.transform.GetComponent<Player>().canMove;
 
-
-        if (Vector3.Distance(transform.position, _player.transform.position) <= _radius)
+        if (canFollow)
         {
-            FollowPlayer();
+            if (Vector3.Distance(transform.position, _player.transform.position) <= _radius)
+            {
+                FollowPlayer();
+            }
+            else
+            {
+
+                Patrol();
+            }
         }
         else
         {
-
             Patrol();
         }
+
+
+
 
 
     }
@@ -97,7 +107,7 @@ public class Enemy : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        
+
     }
 }
 

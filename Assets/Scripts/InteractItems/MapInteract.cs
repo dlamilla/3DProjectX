@@ -29,10 +29,10 @@ public class MapInteract : Interact
         _indication.SetActive(true);
         _objScena.SetActive(false);
         _player.GetComponent<Player>().canMove = false;
-        //_player.SetActive(false);
+        _player.GetComponent<Player>().canPickUpMap = true;
         _indication1.SetActive(false);
         _barraVida.SetActive(false);
-        _player.GetComponent<Player>().canPickUpMap = true;
+        
     }
 }
 

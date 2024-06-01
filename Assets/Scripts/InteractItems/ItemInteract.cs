@@ -31,9 +31,9 @@ public class ItemInteract : Interact
         _indicationTeclaE.SetActive(true);
         _objScena.SetActive(false);
         _player.GetComponent<Player>().canMove = false;
-        _indicationTeclaF.SetActive(false);
-        _barraVida.SetActive(false);
         _player.GetComponent<Player>().canPickUpItem = true;
+        _indicationTeclaF.SetActive(false);
+        _barraVida.SetActive(false);     
         this.gameObject.GetComponent<Collider>().enabled = false;
     }
 }

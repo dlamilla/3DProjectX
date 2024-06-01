@@ -33,8 +33,8 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (_player.activeSelf)
-        {
+       // if (_player.activeSelf)
+       // {
             if (btn1.activeSelf == false)
             {
                 cont = 0;
@@ -79,7 +79,7 @@ public class GameManager : MonoBehaviour
                 
 
             }
-        }
+       // }
         
     }
 

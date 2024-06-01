@@ -264,6 +264,7 @@ public class Player : MonoBehaviour
                 if (hit.transform.CompareTag("EndGame"))
                 {
                     Debug.Log(hit.transform.name);
+                    hit.transform.GetComponent<Interact>().Interactable();
                 }
 
             }
