@@ -32,7 +32,7 @@ public class MapInteract : Interact
         //_player.SetActive(false);
         _indication1.SetActive(false);
         _barraVida.SetActive(false);
-        canPickUp = true;
+        _player.GetComponent<Player>().canPickUp = true;
     }
 }
 

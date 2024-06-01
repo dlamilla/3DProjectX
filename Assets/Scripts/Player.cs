@@ -24,6 +24,7 @@ public class Player : MonoBehaviour
     [SerializeField] private float _rayDistance;
     [SerializeField] private LayerMask _layerInterac;
     [SerializeField] private GameObject _interact;
+    [SerializeField] public bool canPickUp = false;
 
     [Header("Correr")]
     [SerializeField] private float _speedExtra;
@@ -61,6 +62,8 @@ public class Player : MonoBehaviour
     public float anim;
     private Vector3 _velocity;
     RaycastHit hit;
+
+    GameObject map;
     //private int contFPS;
 
 
@@ -106,6 +109,7 @@ public class Player : MonoBehaviour
         }
 
         RayCastCamera();
+        PickUpItems();
 
     }
 
@@ -242,18 +246,11 @@ public class Player : MonoBehaviour
 
                 if (hit.transform.CompareTag("Map"))
                 {
-                    Debug.Log("Estoy aca");
+                    
                     Debug.Log(hit.transform.name);
+                    map = hit.transform.gameObject;
                     hit.transform.GetComponent<Interact>().Interactable();
-                    //if (hit.transform.GetComponent<Interact>().canPickUp)
-                    //{
-                        if (Input.GetKeyDown(KeyCode.E))
-                        {
-                            Debug.Log("A"); 
-                            hit.transform.GetComponent<PickUp>().PickUpItem();
-
-                        }
-                    //}
+                    
                 }
 
             }
@@ -261,6 +258,21 @@ public class Player : MonoBehaviour
         else
         {
             _interact.SetActive(false);
+        }
+    }
+
+    private void PickUpItems()
+    {
+        if (!canPickUp)
+        {
+            return;
+        }
+
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Debug.Log("Estoy aca");
+            map.GetComponent<PickUp>().PickUpItem();
+            canPickUp = false;
         }
     }
 

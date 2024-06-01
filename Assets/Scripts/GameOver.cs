@@ -71,7 +71,7 @@ public class GameOver : MonoBehaviour
         //    m_Renderer.material.SetTexture("_MainTex", m_MainTexture3);
         //}
 
-        bool activo = _player.activeSelf;
+        bool activo = _player.gameObject.GetComponent<Player>().canMove;
 
         if (_inicio._start && Time.timeScale != 0f && activo)
         {
