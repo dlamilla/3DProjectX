@@ -24,7 +24,9 @@ public class Player : MonoBehaviour
     [SerializeField] private float _rayDistance;
     [SerializeField] private LayerMask _layerInterac;
     [SerializeField] private GameObject _interact;
-    [SerializeField] public bool canPickUp = false;
+    [SerializeField] public bool canPickUpMap = false;
+    [SerializeField] public bool canPickUpItem = false;
+
 
     [Header("Correr")]
     [SerializeField] private float _speedExtra;
@@ -64,6 +66,7 @@ public class Player : MonoBehaviour
     RaycastHit hit;
 
     GameObject map;
+    GameObject item;
     //private int contFPS;
 
 
@@ -246,11 +249,21 @@ public class Player : MonoBehaviour
 
                 if (hit.transform.CompareTag("Map"))
                 {
-                    
                     Debug.Log(hit.transform.name);
                     map = hit.transform.gameObject;
                     hit.transform.GetComponent<Interact>().Interactable();
-                    
+                }
+
+                if (hit.transform.CompareTag("Item"))
+                {
+                    Debug.Log(hit.transform.name);
+                    item = hit.transform.gameObject;
+                    hit.transform.GetComponent<Interact>().Interactable();
+                }
+
+                if (hit.transform.CompareTag("EndGame"))
+                {
+                    Debug.Log(hit.transform.name);
                 }
 
             }
@@ -263,16 +276,23 @@ public class Player : MonoBehaviour
 
     private void PickUpItems()
     {
-        if (!canPickUp)
-        {
-            return;
-        }
 
         if (Input.GetKeyDown(KeyCode.E))
         {
-            Debug.Log("Estoy aca");
-            map.GetComponent<PickUp>().PickUpItem();
-            canPickUp = false;
+            if (canPickUpMap)
+            {
+                Debug.Log("Agarro mapa");
+                map.GetComponent<PickUp>().PickUpItem();
+                canPickUpMap = false;
+            }
+
+            if (canPickUpItem)
+            {
+                Debug.Log("Agarro item");
+                item.GetComponent<PickUp>().PickUpItem();
+                canPickUpItem = false;
+            }
+
         }
     }
 

@@ -9,6 +9,8 @@ TagManager:
   - Enemy
   - Map
   - StartGame
+  - Item
+  - EndGame
   layers:
   - Default
   - TransparentFX
