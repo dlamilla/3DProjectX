@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
             }
 
             //Activate mouse
-            if (Input.GetKeyDown(KeyCode.Escape))
+            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
             {
                 Cursor.visible = true;
                 Cursor.lockState = CursorLockMode.None;

@@ -26,7 +26,7 @@ public class ChangeMinimap : MonoBehaviour
         bool _isMap = _player._map;
         if (_isMap)
         {
-            if (Input.GetKeyDown(KeyCode.Tab))
+            if (Input.GetKeyDown(KeyCode.Tab) || Input.GetButtonDown("Open"))
             {
                 /* cont++;
                 if (cont == 1)

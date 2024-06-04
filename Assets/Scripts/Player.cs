@@ -152,13 +152,13 @@ public class Player : MonoBehaviour
 
     private void ApplyRunning()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift) && _canRun)
+        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetButtonDown("Run")) && _canRun)
         {
             _speed = _speedExtra;
             _isRunning = true;
         }
 
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+        if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetButtonUp("Run"))
         {
             _speed = _speedBase;
             _isRunning = false;
@@ -239,7 +239,7 @@ public class Player : MonoBehaviour
         if (Physics.Raycast(_camera.position, _camera.forward, out hit, _rayDistance, _layerInterac))
         {
             _interact.SetActive(true);
-            if (Input.GetKeyDown(KeyCode.F)) // Map. Item. StartGame. EndGame.
+            if (Input.GetKeyDown(KeyCode.F) || Input.GetButtonDown("Interact")) // Map. Item. StartGame. EndGame.
             {
                 if (hit.transform.CompareTag("StartGame"))
                 {
@@ -278,7 +278,7 @@ public class Player : MonoBehaviour
     private void PickUpItems()
     {
 
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyDown(KeyCode.E) || Input.GetButtonDown("PickUp"))
         {
             if (canPickUpMap)
             {
