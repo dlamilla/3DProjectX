@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.EventSystems;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,7 +19,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _bigMap;
 
     [SerializeField] private GameObject _winObject;
-
+    [Header("EventSystem")]
+    [SerializeField] private GameObject firstSelected;
 
     public int cont = 0;
     private bool _active = true;
@@ -33,54 +35,59 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       // if (_player.activeSelf)
-       // {
-            if (btn1.activeSelf == false)
+        // if (_player.activeSelf)
+        // {
+        if (btn1.activeSelf == false)
+        {
+            cont = 0;
+        }
+
+        //Activate mouse
+        if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
+        {
+            /*Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;*/
+
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(firstSelected);
+
+            btn1.SetActive(true);
+            btn2.SetActive(true);
+            btn3.SetActive(true);
+            _player.GetComponent<Player>().enabled = false;
+            _player.GetComponent<AudioSource>().enabled = false;
+            _bigMap.SetActive(false);
+            Time.timeScale = 0f;
+            //if (cont == 0)
+            //{
+
+            //    cont++;
+
+            //}
+            //else
+            //{
+            //    cont = 0;
+            //    Time.timeScale = 1f;
+            //    //Hide curser
+            //    Cursor.visible = false;
+            //    Cursor.lockState = CursorLockMode.Locked;
+            //    ActiveButtons();
+            //    _miniMap.SetActive(true);
+            //    _player.GetComponent<Player>().enabled = true;
+            //}
+        }
+
+        if (_collect._itemsCatch == 8 || _collect._itemsCatchBckp == 8)
+        {
+            if (_active)
             {
-                cont = 0;
+                StartCoroutine(Final());
             }
 
-            //Activate mouse
-            if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
-            {
-                Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;
-                btn1.SetActive(true);
-                btn2.SetActive(true);
-                btn3.SetActive(true);
-                _player.GetComponent<Player>().enabled = false;
-                _bigMap.SetActive(false);
-                Time.timeScale = 0f;
-                //if (cont == 0)
-                //{
 
-                //    cont++;
+        }
+        // }
 
-                //}
-                //else
-                //{
-                //    cont = 0;
-                //    Time.timeScale = 1f;
-                //    //Hide curser
-                //    Cursor.visible = false;
-                //    Cursor.lockState = CursorLockMode.Locked;
-                //    ActiveButtons();
-                //    _miniMap.SetActive(true);
-                //    _player.GetComponent<Player>().enabled = true;
-                //}
-            }
-
-            if (_collect._itemsCatch == 8 || _collect._itemsCatchBckp == 8)
-            {
-                if (_active)
-                {
-                    StartCoroutine(Final());
-                }
-                
-
-            }
-       // }
-        
     }
 
     public void ActiveButtons()

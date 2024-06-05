@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.EventSystems;
 
 public class WinGameController : Interact
 {
@@ -40,6 +41,9 @@ public class WinGameController : Interact
     [SerializeField] private GameObject _audio;
     [SerializeField] private GameObject _audioWin;
 
+    [Header("EventSystem")]
+    [SerializeField] private GameObject firstSelected;
+
     public override void Interactable()
     {
         base.Interactable();
@@ -68,7 +72,7 @@ public class WinGameController : Interact
         _cameraA.SetActive(false);
         _cameraB.SetActive(false);
         _cameraDied.SetActive(false);
-        
+
 
         //CameraItem
         _cameraObject.SetActive(false);
@@ -93,11 +97,13 @@ public class WinGameController : Interact
         _credits.SetActive(true);
         yield return new WaitForSeconds(2f);
         _credits.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstSelected);
         _button.SetActive(true);
 
         _cameraWin.SetActive(true);
 
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        /*Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;*/
     }
 }

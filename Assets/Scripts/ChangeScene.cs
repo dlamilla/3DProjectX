@@ -6,6 +6,11 @@ using UnityEngine.SceneManagement;
 public class ChangeScene : MonoBehaviour
 {
     [SerializeField] private Animator _anim;
+    private void Start()
+    {
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+    }
     public void ChangeSceneIndex(int index)
     {
         StartCoroutine(LoadFade(index));

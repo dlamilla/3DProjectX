@@ -3,9 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Playables;
+using UnityEngine.EventSystems;
 
 public class GameOver : MonoBehaviour
 {
+    [Header("EventSystem")]
+    [SerializeField] private GameObject firstSelected;
+    [Header("Textures")]
     [SerializeField] private Texture m_MainTexture1;
     [SerializeField] private Texture m_MainTexture2;
     [SerializeField] private Countdown _count;
@@ -95,6 +99,7 @@ public class GameOver : MonoBehaviour
             _cameraThird.SetActive(false);
             _cameraWin.SetActive(false);
             _end = true;
+
         }
 
     }
@@ -136,8 +141,10 @@ public class GameOver : MonoBehaviour
         yield return new WaitForSeconds(_timeDied);
 
         m_Renderer.material.SetTexture("_MainTex", m_MainTexture2);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(firstSelected);
         _buttonRestart.SetActive(true);
-        Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;
+        /*Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;*/
     }
 }
