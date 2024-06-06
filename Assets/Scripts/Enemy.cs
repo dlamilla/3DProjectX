@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Threading;
 using UnityEngine;
 using UnityEngine.AI;
+using XInputDotNetPure;
 
 public class Enemy : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private Collider[] _collidersObj;
     private NavMeshAgent _nav;
     private AudioSource _audio;
-
+    PlayerIndex playerIndex;
     private void Awake()
     {
         _nav = GetComponent<NavMeshAgent>();
@@ -92,8 +93,21 @@ public class Enemy : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            _audio.Play();
+            if (other.gameObject.GetComponent<Player>().canMove)
+            {
+                _audio.Play();
+                GamePad.SetVibration(playerIndex, 1f, 1f);
+            }
 
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            _audio.Stop();
+            GamePad.SetVibration(playerIndex, 0f, 0f);
         }
     }
 
@@ -102,6 +116,7 @@ public class Enemy : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             //collision.gameObject.GetComponent<Player>().MoveToStart();
+            GamePad.SetVibration(playerIndex, 0f, 0f);
         }
     }
 
