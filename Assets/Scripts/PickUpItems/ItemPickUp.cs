@@ -38,6 +38,7 @@ public class ItemPickUp : PickUp
         _itemUI.SetActive(true);
         //_activeRolutte.SetActive(true);
         _player.GetComponent<Player>().canMove = true;
+        _player.GetComponent<Collider>().enabled = true;
         _barraVida.SetActive(true);
         _restaurar.RestaurarSalud(_health);
         //Cursor.lockState = CursorLockMode.Locked;

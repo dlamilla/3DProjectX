@@ -4,12 +4,12 @@ using UnityEngine;
 using UnityEditor;
 using TMPro;
 
-[CustomEditor(typeof(FOVenemy))]
+[CustomEditor(typeof(IAEnemy))]
 public class EnemyEditor : Editor
 {
     private void OnSceneGUI()
     {
-        FOVenemy _enem = (FOVenemy)target;
+        IAEnemy _enem = (IAEnemy)target;
 
         Color c = Color.green;
         if (_enem.alertStage == AlertStage.Intrigued)

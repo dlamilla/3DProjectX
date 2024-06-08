@@ -215,7 +215,7 @@ public class Player : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
     }
 
-    private void OnTriggerEnter(Collider other)
+    /*private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Enemy")
         {
@@ -229,7 +229,7 @@ public class Player : MonoBehaviour
         {
             m_Renderer.material.SetTexture("_MainTex", m_MainTexture1);
         }
-    }
+    }*/
 
 
     public void RayCastCamera()
@@ -297,9 +297,9 @@ public class Player : MonoBehaviour
         }
     }
 
-    public void DefaultRenderer()
+    /*public void DefaultRenderer()
     {
         m_Renderer.material.SetTexture("_MainTex", m_MainTexture1);
-    }
+    }*/
 
 }

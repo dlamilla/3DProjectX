@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
+using XInputDotNetPure;
 
 public class ChangePostProcess : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class ChangePostProcess : MonoBehaviour
     private Vignette _vignette;
     [SerializeField] private Player _player;
     [SerializeField] private float _activar;
+    PlayerIndex playerIndex;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +33,15 @@ public class ChangePostProcess : MonoBehaviour
             StartCoroutine(Enemigo(obj));
         }
     }
-
+    private IEnumerator ControlMaximo()
+    {
+        //StartCoroutine(VignettePPV());  
+        _player.GetComponent<Player>().enabled = false;
+        yield return new WaitForSeconds(5f);
+        _player.GetComponent<Player>().enabled = true;
+        //_player.GetComponent<Player>().DefaultRenderer();
+        //StartCoroutine(VignetteDefault());
+    }
     private IEnumerator VignettePPV()
     {
         float elapsedTime = 0;
@@ -66,19 +76,12 @@ public class ChangePostProcess : MonoBehaviour
 
     }
 
-    private IEnumerator ControlMaximo()
-    {
-        //StartCoroutine(VignettePPV());  
-        _player.GetComponent<Player>().enabled = false;
-        yield return new WaitForSeconds(5f);
-        _player.GetComponent<Player>().enabled = true;
-        _player.GetComponent<Player>().DefaultRenderer();
-        //StartCoroutine(VignetteDefault());
-    }
+
 
     private IEnumerator Enemigo(GameObject obj)
     {
         obj.SetActive(false);
+        GamePad.SetVibration(playerIndex, 0f, 0f);
         yield return new WaitForSeconds(_activar);
         obj.SetActive(true);
     }
