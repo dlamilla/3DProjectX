@@ -34,8 +34,8 @@ public class Player : MonoBehaviour
     private float _timeCurrentRunning;
     private float _timeNextRunning;
     [SerializeField] private float _timeBetweenRun;
-    private bool _canRun = true;
-    private bool _isRunning = false;
+    public bool _canRun = true;
+    public bool _isRunning = false;
     private float _speedBase;
 
 
@@ -57,6 +57,9 @@ public class Player : MonoBehaviour
     [SerializeField] public bool _FisrtToThird;
     [SerializeField] public bool _map;
 
+    [Header("Sounds")]
+    [SerializeField] private AudioClip _walkPlayer;
+    [SerializeField] private AudioClip _runPlayer;
     private AudioSource _footSteps;
     //private CharacterController _controller;
     private Rigidbody _rb;
@@ -94,11 +97,32 @@ public class Player : MonoBehaviour
             anim = _input.magnitude;
             if (anim > 0f)
             {
-                _footSteps.enabled = true;
+                //_footSteps.enabled = true;
+
+                if (!_footSteps.isPlaying && !_isRunning)
+                {
+                    _footSteps.clip = _walkPlayer;
+                    _footSteps.Play();
+                    //_footSteps.loop = true;
+                }
+                else if (_isRunning)
+                {
+                    if (!_footSteps.isPlaying)
+                    {
+                        _footSteps.Stop();
+                        _footSteps.clip = _runPlayer;
+                        _footSteps.Play();
+                        //_footSteps.loop = true;
+                    }
+
+                }
+
+
             }
             else
             {
-                _footSteps.enabled = false;
+                //_footSteps.enabled = false;
+                _footSteps.clip = null;
             }
 
             //_anim.SetFloat("Speed", Mathf.Abs(anim));
@@ -156,6 +180,7 @@ public class Player : MonoBehaviour
         {
             _speed = _speedExtra;
             _isRunning = true;
+
         }
 
         if (Input.GetKeyUp(KeyCode.LeftShift) || Input.GetButtonUp("Run"))
