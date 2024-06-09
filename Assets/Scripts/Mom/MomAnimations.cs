@@ -5,7 +5,6 @@ using UnityEngine;
 public class MomAnimations : MonoBehaviour
 {
     [SerializeField] private float _time;
-    [SerializeField] private Countdown _count;
     private Animator _anim;
     private void Awake()
     {

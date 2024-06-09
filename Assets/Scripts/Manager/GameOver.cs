@@ -12,7 +12,7 @@ public class GameOver : MonoBehaviour
     [Header("Textures")]
     [SerializeField] private Texture m_MainTexture1;
     [SerializeField] private Texture m_MainTexture2;
-    [SerializeField] private Countdown _count;
+
     Renderer m_Renderer;
 
     [Header("Vida Madre")]
