@@ -10,12 +10,13 @@ public class Player : MonoBehaviour
     private Vector2 _input;
     private Vector3 _direction;
     public bool canMove = true;
+    public float anim;
 
     [Header("Rotacion")]
     [SerializeField] private float _rotationSpeed = 500f;
 
-    [Header("Salto")]
-    [SerializeField] private float _jumpPower;
+    /*[Header("Salto")]
+    [SerializeField] private float _jumpPower;*/
 
     /*[Header("Animaciones")]
     [SerializeField] public Animator _anim;*/
@@ -39,21 +40,21 @@ public class Player : MonoBehaviour
     private float _speedBase;
 
 
-    [Header("Materiales")]
+    /*[Header("Materiales")]
     [SerializeField] private Texture m_MainTexture1;
     [SerializeField] private Texture m_MainTexture2;
     [SerializeField] private Texture m_MainTexture3;
-    [SerializeField] private Renderer m_Renderer;
+    [SerializeField] private Renderer m_Renderer;*/
 
     //[SerializeField] private Transform _starPosition;
 
     [Header("FPS")]
     [SerializeField] private Transform _camFPS;
-    [SerializeField] private GameObject _firstPerson;
-    [SerializeField] private GameObject _cameraFPS;
+    /*[SerializeField] private GameObject _firstPerson;
+    [SerializeField] private GameObject _cameraFPS;*/
 
     [Header("ThirdPerson")]
-    [SerializeField] private GameObject _cameraThird;
+    /*[SerializeField] private GameObject _cameraThird;*/
     [SerializeField] public bool _FisrtToThird;
     [SerializeField] public bool _map;
 
@@ -68,7 +69,7 @@ public class Player : MonoBehaviour
     //private CharacterController _controller;
     private Rigidbody _rb;
     private Camera _mainCamera;
-    public float anim;
+    
     private Vector3 _velocity;
     RaycastHit hit;
 

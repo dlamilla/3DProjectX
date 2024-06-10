@@ -32,6 +32,7 @@ public class IAEnemy : MonoBehaviour
     {
         _nav = GetComponent<NavMeshAgent>();
         _audio = GetComponent<AudioSource>();
+        GamePad.SetVibration(playerIndex, 0f, 0f);
     }
     // Start is called before the first frame update
     void Start()
@@ -67,13 +68,14 @@ public class IAEnemy : MonoBehaviour
             case AlertStage.Peaceful:
                 Patrol();
                 _audio.Stop();
-                GamePad.SetVibration(playerIndex, 0f, 0f);
+                
                 if (playerInFOV)
                 {
                     alertStage = AlertStage.Intrigued;
                 }
                 break;
             case AlertStage.Intrigued:
+                GamePad.SetVibration(playerIndex, 0f, 0f);
                 if (playerInFOV)
                 {
                     _audio.Play();
