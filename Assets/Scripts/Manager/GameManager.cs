@@ -81,7 +81,9 @@ public class GameManager : MonoBehaviour
         }
 
 
-        if (_collect._itemsCatch == 8 || _collect._itemsCatchBckp == 8)
+        /*if (_collect._itemsCatch == 8 || _collect._itemsCatchBckp == 8)
+        {*/
+        if (_player.GetComponent<PlayerInventory>().inventory.Count == 8)
         {
             if (_active)
             {
