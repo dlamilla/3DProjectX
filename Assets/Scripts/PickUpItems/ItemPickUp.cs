@@ -12,9 +12,9 @@ public class ItemPickUp : PickUp
     [SerializeField] private GameObject _camera2; //10
     [SerializeField] private GameObject _player;
     //[SerializeField] private GameObject _activeRolutte;
-    //[SerializeField] private Item _itemX;
+    [SerializeField] private Item _itemX;
     [SerializeField] private GameObject _miniMap;
-    [SerializeField] private GameObject _itemUI;
+    //[SerializeField] private GameObject _itemUI;
     [SerializeField] private GameObject _interfaceItems;
     [SerializeField] private GameObject _barraVida;
     [SerializeField] private GameOver _restaurar;
@@ -28,7 +28,7 @@ public class ItemPickUp : PickUp
 
     private IEnumerator PickUpItemColor()
     {
-        //_itemX.ItemCollect();
+        _itemX.ItemCollect();
         yield return new WaitForSeconds(2f);
         _indicationTeclaE.SetActive(false);
         _cameraFirstPerson.SetActive(true);
@@ -36,11 +36,11 @@ public class ItemPickUp : PickUp
         _camera2.SetActive(false);
         _miniMap.SetActive(true);
         _item.SetActive(false);
-        _itemUI.SetActive(true);
+        //_itemUI.SetActive(true);
         //_activeRolutte.SetActive(true);
         _player.GetComponent<Player>().canMove = true;
         _player.GetComponent<Collider>().enabled = true;
-        _player.GetComponent<PlayerInventory>().inventory.Add(idItem);
+        _player.GetComponent<PlayerInventory>().SaveItem(idItem);
         _barraVida.SetActive(true);
         _restaurar.RestaurarSalud(_health);
         //Cursor.lockState = CursorLockMode.Locked;
