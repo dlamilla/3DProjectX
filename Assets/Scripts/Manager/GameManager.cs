@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject _bigMap;
 
     [SerializeField] private GameObject _winObject;
+    [SerializeField] private GameObject _house;
     [Header("EventSystem")]
     [SerializeField] private GameObject firstSelected;
 
@@ -113,6 +114,7 @@ public class GameManager : MonoBehaviour
         _text.text = "Go back with your Mommy!!";
         text.SetActive(true);
         _winObject.SetActive(true);
+        _house.SetActive(true);
         yield return new WaitForSeconds(2f);
         text.SetActive(false);
         _active = false;
