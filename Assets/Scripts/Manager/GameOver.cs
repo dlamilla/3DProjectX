@@ -30,6 +30,7 @@ public class GameOver : MonoBehaviour
     [SerializeField] private MomAnimations _anims;
     [SerializeField] private GameObject _buttonRestart;
     [SerializeField] private GameObject _barraVida;
+    [SerializeField] private GameObject _barraCorrer;
     [SerializeField] private GameObject _miniMap;
     [SerializeField] private GameObject _bigMap;
     [SerializeField] private GameObject _itemUI;
@@ -114,6 +115,7 @@ public class GameOver : MonoBehaviour
         _player.SetActive(false);
         _anims.CancelarAnimacion();
         _barraVida.SetActive(false);
+        _barraCorrer.SetActive(false);
         _miniMap.SetActive(false);
         _bigMap.SetActive(false);
         _itemUI.SetActive(false);

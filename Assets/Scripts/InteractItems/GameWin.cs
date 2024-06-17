@@ -14,6 +14,7 @@ public class GameWin : Interact
     [SerializeField] private GameObject _son3;
     [SerializeField] private GameObject _family;
     [SerializeField] private GameObject _barraVida;
+    [SerializeField] private GameObject _barraCorrer;
     [SerializeField] private GameObject _itemUI;
 
     [Header("Textos")]
@@ -88,6 +89,7 @@ public class GameWin : Interact
 
         //Barra vida
         _barraVida.SetActive(false);
+        _barraCorrer.SetActive(false);
 
         //Items
         _itemUI.SetActive(false);
