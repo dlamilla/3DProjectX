@@ -11,7 +11,6 @@ public class MapInteract : Interact
     [SerializeField] private GameObject _objScena;
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _indication1;
-    //[SerializeField] private GameObject _miniMap;
     [SerializeField] private GameObject _inventoryUI;
     [SerializeField] private GameObject _barraVida;
     [SerializeField] private GameObject _barraCorrer;

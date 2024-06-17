@@ -104,7 +104,5 @@ public class GameWin : Interact
 
         _cameraWin.SetActive(true);
 
-        /*Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;*/
     }
 }

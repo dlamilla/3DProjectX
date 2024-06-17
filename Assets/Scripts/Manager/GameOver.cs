@@ -59,22 +59,6 @@ public class GameOver : MonoBehaviour
     void Update()
     {
 
-
-        //if (Input.GetKeyDown(KeyCode.Z))
-        //{
-        //    m_Renderer.material.SetTexture("_MainTex", m_MainTexture1);
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.X))
-        //{
-        //    m_Renderer.material.SetTexture("_MainTex", m_MainTexture2);
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.C))
-        //{
-        //    m_Renderer.material.SetTexture("_MainTex", m_MainTexture3);
-        //}
-
         bool activo = _player.gameObject.GetComponent<Player>().canMove;
 
         if (_inicio._start && Time.timeScale != 0f && activo)
@@ -145,7 +129,6 @@ public class GameOver : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(firstSelected);
         _buttonRestart.SetActive(true);
-        /*Cursor.visible = true;
-        Cursor.lockState = CursorLockMode.None;*/
+
     }
 }

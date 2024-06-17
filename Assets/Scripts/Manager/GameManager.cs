@@ -10,14 +10,10 @@ public class GameManager : MonoBehaviour
     [SerializeField] private GameObject btn2;
     [SerializeField] private GameObject btn3;
     [SerializeField] private GameObject _player;
-
     [SerializeField] private GameObject text;
     [SerializeField] private TextMeshProUGUI _text;
-    //[SerializeField] private Collection _collect;
-
     [SerializeField] private GameObject _miniMap;
     [SerializeField] private GameObject _bigMap;
-
     [SerializeField] private GameObject _winObject;
     [SerializeField] private GameObject _house;
     [Header("EventSystem")]
@@ -36,20 +32,11 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // if (_player.activeSelf)
-        // {
-        /*if (btn1.activeSelf == false)
-        {
-            cont = 0;
-        }*/
-
         //Activate mouse
         if (!_player.GetComponent<Player>().gameWin && !_player.GetComponent<Player>().gameOver)
         {
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
             {
-                /*Cursor.visible = true;
-                Cursor.lockState = CursorLockMode.None;*/
 
                 EventSystem.current.SetSelectedGameObject(null);
                 EventSystem.current.SetSelectedGameObject(firstSelected);
@@ -59,32 +46,12 @@ public class GameManager : MonoBehaviour
                 btn3.SetActive(true);
                 _player.GetComponent<Player>().canMove = false;
                 _player.GetComponent<Player>().isPause = true;
-                //_player.GetComponent<AudioSource>().enabled = false;
                 _bigMap.SetActive(false);
                 Time.timeScale = 0f;
-                //if (cont == 0)
-                //{
 
-                //    cont++;
-
-                //}
-                //else
-                //{
-                //    cont = 0;
-                //    Time.timeScale = 1f;
-                //    //Hide curser
-                //    Cursor.visible = false;
-                //    Cursor.lockState = CursorLockMode.Locked;
-                //    ActiveButtons();
-                //    _miniMap.SetActive(true);
-                //    _player.GetComponent<Player>().enabled = true;
-                //}
             }
         }
 
-
-        /*if (_collect._itemsCatch == 8 || _collect._itemsCatchBckp == 8)
-        {*/
         if (_player.GetComponent<PlayerInventory>().inventory.Count == 8)
         {
             if (_active)
@@ -94,13 +61,14 @@ public class GameManager : MonoBehaviour
 
 
         }
-        // }
 
     }
+
     public void TiempoPausado(float escala)
     {
         Time.timeScale = escala;
     }
+    
     public void ActiveButtons()
     {
         btn1.SetActive(!btn1.activeSelf);

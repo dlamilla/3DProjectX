@@ -5,10 +5,8 @@ using UnityEngine;
 
 public class Item : MonoBehaviour
 {
-    //[SerializeField] private GameObject _effect;
     [Header("Item")]
     [SerializeField] private float _cont;
-    //[SerializeField] private Collection _collection;
 
     [Header("Shader")]
     [SerializeField] private Material _dissolve;
@@ -50,8 +48,6 @@ public class Item : MonoBehaviour
             _dissolve.SetColor("_Color", lerpedColor);
             yield return null;
         }
-        //_collection.ItemSum(_cont);
         
-        //this.gameObject.SetActive(false);
     }
 }

@@ -24,9 +24,6 @@ public class ChangePostProcess : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            //_player.GetComponentInChildren<Animator>().SetFloat("Speed", 0f);
-            //_player.GetComponent<AudioSource>().enabled = false;
-            //_player.GetComponentInChildren<Animator>().SetBool("isRunning", false);
             _player.GetComponent<Rigidbody>().velocity = Vector3.zero;
             StartCoroutine(ControlMaximo());
             GameObject obj = collision.gameObject;
@@ -39,7 +36,6 @@ public class ChangePostProcess : MonoBehaviour
         _player.GetComponent<Player>().enabled = false;
         yield return new WaitForSeconds(5f);
         _player.GetComponent<Player>().enabled = true;
-        //_player.GetComponent<Player>().DefaultRenderer();
         StartCoroutine(VignetteDefault());
     }
     private IEnumerator VignettePPV()
@@ -75,8 +71,6 @@ public class ChangePostProcess : MonoBehaviour
         }
 
     }
-
-
 
     private IEnumerator Enemigo(GameObject obj)
     {

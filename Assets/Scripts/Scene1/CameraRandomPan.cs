@@ -6,7 +6,6 @@ public class CameraRandomPan : MonoBehaviour
     public Vector3 min;
     public Vector3 max;
     public float minDistance = 5f;
-    //[Range(0.1f, 1f)]
     public float lerpSpeed = 0.75f;
 
     private Vector3 _targetPosition;

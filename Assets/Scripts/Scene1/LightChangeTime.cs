@@ -32,11 +32,6 @@ public class LightChangeTime : MonoBehaviour
         _light.intensity = 1f;
         timeDelay = Random.Range(1f, 3f);
         yield return new WaitForSeconds(timeDelay);
-        //_light.intensity = 2f;
-        //timeDelay = Random.Range(1f, 3f);
-        //yield return new WaitForSeconds(timeDelay);
         titila = false;
-
-
     }
 }

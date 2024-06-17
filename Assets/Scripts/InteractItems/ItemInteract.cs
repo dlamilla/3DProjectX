@@ -10,7 +10,6 @@ public class ItemInteract : Interact
     [SerializeField] private GameObject _camera2; //10
     [SerializeField] private GameObject _objScena;
     [SerializeField] private GameObject _player;
-    //[SerializeField] private GameObject _activeRolutte;
     [SerializeField] private GameObject _indicationTeclaF;
     [SerializeField] private GameObject _miniMap;
     [SerializeField] private GameObject _inventoryUI;
