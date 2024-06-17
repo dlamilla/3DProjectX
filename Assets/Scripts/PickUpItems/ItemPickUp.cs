@@ -17,6 +17,7 @@ public class ItemPickUp : PickUp
     //[SerializeField] private GameObject _itemUI;
     //[SerializeField] private GameObject _interfaceItems;
     [SerializeField] private GameObject _barraVida;
+    [SerializeField] private GameObject _barraCorrer;
     [SerializeField] private GameOver _restaurar;
     [SerializeField] private float _health;
 
@@ -42,6 +43,7 @@ public class ItemPickUp : PickUp
         _player.GetComponent<Collider>().enabled = true;
         _player.GetComponent<PlayerInventory>().SaveItem(idItem);
         _barraVida.SetActive(true);
+        _barraCorrer.SetActive(true);
         _restaurar.RestaurarSalud(_health);
         //Cursor.lockState = CursorLockMode.Locked;
         //Cursor.visible = true;

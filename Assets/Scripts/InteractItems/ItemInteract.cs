@@ -15,6 +15,7 @@ public class ItemInteract : Interact
     [SerializeField] private GameObject _miniMap;
     [SerializeField] private GameObject _inventoryUI;
     [SerializeField] private GameObject _barraVida;
+    [SerializeField] private GameObject _barraCorrer;
     public override void Interactable()
     {
         base.Interactable();
@@ -35,7 +36,8 @@ public class ItemInteract : Interact
         _player.GetComponent<Player>().isInteract = true;
         _player.GetComponent<Collider>().enabled = false;
         _indicationTeclaF.SetActive(false);
-        _barraVida.SetActive(false);     
+        _barraVida.SetActive(false);    
+        _barraCorrer.SetActive(false); 
         this.gameObject.GetComponent<Collider>().enabled = false;
     }
 }

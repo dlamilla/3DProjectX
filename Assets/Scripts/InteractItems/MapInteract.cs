@@ -14,6 +14,7 @@ public class MapInteract : Interact
     //[SerializeField] private GameObject _miniMap;
     [SerializeField] private GameObject _inventoryUI;
     [SerializeField] private GameObject _barraVida;
+    [SerializeField] private GameObject _barraCorrer;
 
     public override void Interactable()
     {
@@ -34,6 +35,7 @@ public class MapInteract : Interact
         _player.GetComponent<Player>().isInteract = true;
         _indication1.SetActive(false);
         _barraVida.SetActive(false);
+        _barraCorrer.SetActive(false);
         
     }
 }

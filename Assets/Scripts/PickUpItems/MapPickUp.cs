@@ -13,6 +13,7 @@ public class MapPickUp : PickUp
     [SerializeField] private GameObject _miniMap;
     //[SerializeField] private GameObject _itemBackground;
     [SerializeField] private GameObject _barraVida;
+    [SerializeField] private GameObject _barraCorrer;
 
     [Header("Sonido")]
     [SerializeField] private AudioClip _sound;
@@ -38,5 +39,6 @@ public class MapPickUp : PickUp
         this.gameObject.SetActive(false);
         _miniMap.SetActive(true);
         _barraVida.SetActive(true);
+        _barraCorrer.SetActive(true);
     }
 }

@@ -16,6 +16,7 @@ public class ConversationInteract : Interact
     [SerializeField] private float _time;
     [SerializeField] private GameObject _limit;
     [SerializeField] private GameObject _barraVida;
+    [SerializeField] private GameObject _barraCorrer;
 
     [Header("Animacion Inicio")]
     [SerializeField] private PlayableDirector _scene;
@@ -31,7 +32,7 @@ public class ConversationInteract : Interact
     private IEnumerator Conversation()
     {
        // _player.GetComponent<>
-        
+        _barraCorrer.SetActive(false);
         _indication1.SetActive(true);
         //_interact.SetActive(false);
         _barraVida.SetActive(true);
@@ -40,6 +41,7 @@ public class ConversationInteract : Interact
         _indication1.SetActive(false);
         _indication2.SetActive(true);
         yield return new WaitForSeconds(3f);
+        _barraCorrer.SetActive(true);
         _indication2.SetActive(false);
         _map.SetActive(true);
         _activeMap.SetActive(true);

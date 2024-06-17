@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
@@ -32,12 +33,15 @@ public class Player : MonoBehaviour
     [Header("Correr")]
     [SerializeField] private float _speedExtra;
     [SerializeField] private float _timeRunning;
-    private float _timeCurrentRunning;
-    private float _timeNextRunning;
     [SerializeField] private float _timeBetweenRun;
+    [SerializeField] private float run;
+    [SerializeField] private float runMax;
+    [SerializeField] private Image runStatus;
     public bool _canRun = true;
     public bool _isRunning = false;
     private float _speedBase;
+    private float _timeCurrentRunning;
+    private float _timeNextRunning;
 
 
     /*[Header("Materiales")]
@@ -71,7 +75,7 @@ public class Player : MonoBehaviour
     //private CharacterController _controller;
     private Rigidbody _rb;
     private Camera _mainCamera;
-    
+
     private Vector3 _velocity;
     RaycastHit hit;
 
@@ -93,6 +97,8 @@ public class Player : MonoBehaviour
     {
         _speedBase = _speed;
         _timeCurrentRunning = _timeRunning;
+        run = runMax;
+        ActualizarUI(run, runMax);
     }
 
     // Update is called once per frame
@@ -139,10 +145,10 @@ public class Player : MonoBehaviour
             ApplyRunning();
             ApplyRotacion();
 
-
+            RayCastCamera();
+            
         }
 
-        RayCastCamera();
         PickUpItems();
 
     }
@@ -203,7 +209,7 @@ public class Player : MonoBehaviour
             {
                 //_anim.SetBool("isRunning",true);
                 _timeCurrentRunning -= Time.deltaTime;
-
+                ActualizarUI(_timeCurrentRunning, runMax);
             }
             else
             {
@@ -218,11 +224,17 @@ public class Player : MonoBehaviour
         if (!_isRunning && _timeCurrentRunning <= _timeRunning && Time.time >= _timeNextRunning)
         {
             _timeCurrentRunning += Time.deltaTime;
+            ActualizarUI(_timeCurrentRunning, runMax);
             if (_timeCurrentRunning >= _timeRunning)
             {
                 _canRun = true;
             }
         }
+    }
+
+    private void ActualizarUI(float run, float runMax)
+    {
+        runStatus.fillAmount = Mathf.Lerp(runStatus.fillAmount, run / runMax, 10f * Time.deltaTime);
     }
 
 
