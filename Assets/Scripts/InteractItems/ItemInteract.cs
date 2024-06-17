@@ -13,7 +13,7 @@ public class ItemInteract : Interact
     //[SerializeField] private GameObject _activeRolutte;
     [SerializeField] private GameObject _indicationTeclaF;
     [SerializeField] private GameObject _miniMap;
-    [SerializeField] private GameObject _interfaceItems;
+    [SerializeField] private GameObject _inventoryUI;
     [SerializeField] private GameObject _barraVida;
     public override void Interactable()
     {
@@ -24,7 +24,7 @@ public class ItemInteract : Interact
     private void ItemVisual()
     {
         _cameraFirstPerson.SetActive(false);
-        _interfaceItems.SetActive(false);
+        _inventoryUI.SetActive(false);
         _camera2.SetActive(true);
         _miniMap.SetActive(false);
         _item.SetActive(true);
@@ -32,6 +32,7 @@ public class ItemInteract : Interact
         _objScena.SetActive(false);
         _player.GetComponent<Player>().canMove = false;
         _player.GetComponent<Player>().canPickUpItem = true;
+        _player.GetComponent<Player>().isInteract = true;
         _player.GetComponent<Collider>().enabled = false;
         _indicationTeclaF.SetActive(false);
         _barraVida.SetActive(false);     

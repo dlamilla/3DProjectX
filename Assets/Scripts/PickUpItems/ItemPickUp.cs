@@ -15,7 +15,7 @@ public class ItemPickUp : PickUp
     [SerializeField] private Item _itemX;
     [SerializeField] private GameObject _miniMap;
     //[SerializeField] private GameObject _itemUI;
-    [SerializeField] private GameObject _interfaceItems;
+    //[SerializeField] private GameObject _interfaceItems;
     [SerializeField] private GameObject _barraVida;
     [SerializeField] private GameOver _restaurar;
     [SerializeField] private float _health;
@@ -32,7 +32,7 @@ public class ItemPickUp : PickUp
         yield return new WaitForSeconds(2f);
         _indicationTeclaE.SetActive(false);
         _cameraFirstPerson.SetActive(true);
-        _interfaceItems.SetActive(true);
+        //_interfaceItems.SetActive(true);
         _camera2.SetActive(false);
         _miniMap.SetActive(true);
         _item.SetActive(false);

@@ -65,6 +65,8 @@ public class Player : MonoBehaviour
     [Header("Bool controls")]
     [SerializeField] public bool gameWin = false;
     [SerializeField] public bool gameOver = false;
+    [SerializeField] public bool isInteract = false;
+    [SerializeField] public bool isPause = false;
     private AudioSource _footSteps;
     //private CharacterController _controller;
     private Rigidbody _rb;
@@ -315,6 +317,7 @@ public class Player : MonoBehaviour
                 Debug.Log("Agarro mapa");
                 map.GetComponent<PickUp>().PickUpItem();
                 canPickUpMap = false;
+                isInteract = false;
             }
 
             if (canPickUpItem)
@@ -322,6 +325,7 @@ public class Player : MonoBehaviour
                 Debug.Log("Agarro item");
                 item.GetComponent<PickUp>().PickUpItem();
                 canPickUpItem = false;
+                isInteract = false;
             }
 
         }

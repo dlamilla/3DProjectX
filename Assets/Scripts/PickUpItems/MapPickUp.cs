@@ -11,7 +11,7 @@ public class MapPickUp : PickUp
     [SerializeField] private GameObject _objScena;
     [SerializeField] private GameObject _player;
     [SerializeField] private GameObject _miniMap;
-    [SerializeField] private GameObject _itemBackground;
+    //[SerializeField] private GameObject _itemBackground;
     [SerializeField] private GameObject _barraVida;
 
     [Header("Sonido")]
@@ -33,7 +33,7 @@ public class MapPickUp : PickUp
         _indication.SetActive(false);
         _objScena.SetActive(false);
         _player.GetComponent<Player>().canMove = true;
-        _itemBackground.SetActive(true);
+        //_itemBackground.SetActive(true);
         _player.GetComponent<Player>()._map = true;
         this.gameObject.SetActive(false);
         _miniMap.SetActive(true);

@@ -13,7 +13,7 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] private GameObject text;
     [SerializeField] private TextMeshProUGUI _text;
-    [SerializeField] private Collection _collect;
+    //[SerializeField] private Collection _collect;
 
     [SerializeField] private GameObject _miniMap;
     [SerializeField] private GameObject _bigMap;
@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
                 btn2.SetActive(true);
                 btn3.SetActive(true);
                 _player.GetComponent<Player>().canMove = false;
+                _player.GetComponent<Player>().isPause = true;
                 //_player.GetComponent<AudioSource>().enabled = false;
                 _bigMap.SetActive(false);
                 Time.timeScale = 0f;
@@ -107,6 +108,7 @@ public class GameManager : MonoBehaviour
         btn3.SetActive(!btn3.activeSelf);
 
         _player.GetComponent<Player>().canMove = true;
+        _player.GetComponent<Player>().isPause = false;
     }
 
     private IEnumerator Final()

@@ -6,7 +6,7 @@ public class ChangeMinimap : MonoBehaviour
 {
     [SerializeField] private GameObject _miniMap;
     [SerializeField] private GameObject _bigMap;
-    [SerializeField] private GameObject _interfaceItems;
+    //[SerializeField] private GameObject _interfaceItems;
     private Player _player;
 
     private void Awake()
@@ -24,6 +24,12 @@ public class ChangeMinimap : MonoBehaviour
     {
         float _input = _player.anim;
         bool _isMap = _player._map;
+        
+        if (_player.isPause)
+        {
+            return;
+        }
+
         if (_isMap)
         {
             if (Input.GetKeyDown(KeyCode.Tab) || Input.GetButtonDown("Open"))
@@ -50,11 +56,11 @@ public class ChangeMinimap : MonoBehaviour
                     _miniMap.SetActive(false);
                     _bigMap.SetActive(true);
                     //_player.enabled = false;
-                    _interfaceItems.SetActive(false);
+                    //_interfaceItems.SetActive(false);
                 }else
                 {
                     _miniMap.SetActive(true);
-                    _interfaceItems.SetActive(true);
+                    //_interfaceItems.SetActive(true);
                     _bigMap.SetActive(false);
                 }
 
@@ -64,7 +70,7 @@ public class ChangeMinimap : MonoBehaviour
             if (_input != 0f)
             {
                 _miniMap.SetActive(true);
-                _interfaceItems.SetActive(true);
+                //_interfaceItems.SetActive(true);
                 _bigMap.SetActive(false);
                 //_player.enabled = true;
             }
