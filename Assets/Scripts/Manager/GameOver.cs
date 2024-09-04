@@ -9,6 +9,10 @@ public class GameOver : MonoBehaviour
 {
     [Header("EventSystem")]
     [SerializeField] private GameObject firstSelected;
+
+    [Header("Alertas")]
+    [SerializeField] private GameObject alertBox;
+
     [Header("Textures")]
     [SerializeField] private Texture m_MainTexture1;
     [SerializeField] private Texture m_MainTexture2;
@@ -76,6 +80,12 @@ public class GameOver : MonoBehaviour
     private void RecivirDanio(float cantidad)
     {
         vida -= cantidad;
+
+        if (vida >= 30f)
+        {
+            AnalizaDanio(vida);
+        }
+        
         ActualizarUI(vida, vidaMax);
         if (vida <= 0)
         {
@@ -87,6 +97,22 @@ public class GameOver : MonoBehaviour
 
         }
 
+    }
+
+    private void AnalizaDanio(float danio){
+        int num = (int)danio;
+
+        if (num % 30 == 0)
+        {
+            //Alertas cuando tiene 90 60 30 de vida
+            alertBox.SetActive(true);
+            StartCoroutine(PararAlerta());
+        }
+    }
+
+    private IEnumerator PararAlerta(){
+        yield return new WaitForSeconds(2f);
+        alertBox.SetActive(false);
     }
 
     public void RestaurarSalud(float cantidad)
