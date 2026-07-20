@@ -192,8 +192,8 @@ public class Player : MonoBehaviour
     private void ApplyMovement(Vector3 dirPlayer)  //28 speed
     {
         _velocity = dirPlayer * _speed;
-        _velocity.y = _rb.velocity.y;
-        _rb.velocity = _velocity;
+        _velocity.y = _rb.linearVelocity.y;
+        _rb.linearVelocity = _velocity;
     }
 
     private void ApplyRotacion()

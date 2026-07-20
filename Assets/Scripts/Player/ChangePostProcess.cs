@@ -24,7 +24,7 @@ public class ChangePostProcess : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            _player.GetComponent<Rigidbody>().velocity = Vector3.zero;
+            _player.GetComponent<Rigidbody>().linearVelocity = Vector3.zero;
             StartCoroutine(ControlMaximo());
             GameObject obj = collision.gameObject;
             StartCoroutine(Enemigo(obj));

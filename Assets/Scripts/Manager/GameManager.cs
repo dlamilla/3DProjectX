@@ -38,16 +38,16 @@ public class GameManager : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Escape) || Input.GetButtonDown("Start"))
             {
 
-                EventSystem.current.SetSelectedGameObject(null);
-                EventSystem.current.SetSelectedGameObject(firstSelected);
+                //EventSystem.current.SetSelectedGameObject(null);
+                //EventSystem.current.SetSelectedGameObject(firstSelected);
 
-                btn1.SetActive(true);
-                btn2.SetActive(true);
-                btn3.SetActive(true);
-                _player.GetComponent<Player>().canMove = false;
-                _player.GetComponent<Player>().isPause = true;
-                _bigMap.SetActive(false);
-                Time.timeScale = 0f;
+                //btn1.SetActive(true);
+                //btn2.SetActive(true);
+                //btn3.SetActive(true);
+                //_player.GetComponent<Player>().canMove = false;
+                //_player.GetComponent<Player>().isPause = true;
+                //_bigMap.SetActive(false);
+                //Time.timeScale = 0f;
 
             }
         }
@@ -81,7 +81,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator Final()
     {
-        _text.text = "Go back with your Mommy!!";
+        _text.text = "Go back with Mommy!!";
         text.SetActive(true);
         _winObject.SetActive(true);
         _house.SetActive(true);

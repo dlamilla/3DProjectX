@@ -11,8 +11,8 @@ public class SceneLoadManager : MonoBehaviour
 
     private void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
     }
     public void SceneLoad(int sceneIndex)
     {

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using XInputDotNetPure;
+//using XInputDotNetPure;
 
 public enum AlertStage
 {
@@ -27,12 +27,12 @@ public class IAEnemy : MonoBehaviour
 
     private NavMeshAgent _nav;
     private AudioSource _audio;
-    PlayerIndex playerIndex;
+    //PlayerIndex playerIndex;
     private void Awake()
     {
         _nav = GetComponent<NavMeshAgent>();
         _audio = GetComponent<AudioSource>();
-        GamePad.SetVibration(playerIndex, 0f, 0f);
+        //GamePad.SetVibration(playerIndex, 0f, 0f);
     }
     // Start is called before the first frame update
     void Start()
@@ -75,7 +75,7 @@ public class IAEnemy : MonoBehaviour
                 }
                 break;
             case AlertStage.Intrigued:
-                GamePad.SetVibration(playerIndex, 0f, 0f);
+                //GamePad.SetVibration(playerIndex, 0f, 0f);
                 if (playerInFOV)
                 {
                     _audio.Play();
@@ -97,7 +97,7 @@ public class IAEnemy : MonoBehaviour
             case AlertStage.Alerted:
                 _nav.SetDestination(_playerFollow.position);
                 
-                GamePad.SetVibration(playerIndex, 1f, 1f);
+                //GamePad.SetVibration(playerIndex, 1f, 1f);
                 if (!playerInFOV)
                 {
                     alertStage = AlertStage.Intrigued;
